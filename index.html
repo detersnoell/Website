@@ -44,9 +44,9 @@
     margin:0;
     min-height:100%;
     background:
-      radial-gradient(circle at 15% 10%, rgba(255,255,255,.35), transparent 40%),
-      radial-gradient(circle at 85% 90%, rgba(255,255,255,.25), transparent 45%),
-      linear-gradient(160deg, var(--pink-hot), var(--pink) 55%, #b8106c 100%);
+      radial-gradient(circle at 20% 8%, rgba(255,255,255,.55), transparent 38%),
+      radial-gradient(circle at 88% 85%, rgba(255,235,250,.4), transparent 45%),
+      linear-gradient(160deg, #ff3fc0, var(--pink-hot) 40%, var(--pink) 75%, #ff5fc4 100%);
     color: var(--ink);
     font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
     padding-block: 48px;
@@ -57,8 +57,8 @@
     content:"";
     position:fixed; inset:0;
     background-image:
-      radial-gradient(circle, rgba(255,255,255,.55) 1.5px, transparent 1.6px),
-      radial-gradient(circle, rgba(244,198,75,.5) 2px, transparent 2.1px);
+      radial-gradient(circle, rgba(255,255,255,.65) 1.5px, transparent 1.6px),
+      radial-gradient(circle, rgba(244,198,75,.6) 2px, transparent 2.1px);
     background-size: 46px 46px, 130px 130px;
     background-position: 0 0, 40px 60px;
     pointer-events:none;
@@ -121,95 +121,39 @@
     margin:0;
   }
 
-  /* ---- Doll box ---- */
+  /* ---- Doll box photo ---- */
   .box{
     position:relative;
-    width: min(320px, 78vw);
-    background: linear-gradient(180deg, var(--pink-bright), var(--pink));
+    width: min(300px, 76vw);
+    border-radius: 26px;
     border: 10px solid #fff;
-    border-radius: 22px;
+    overflow: hidden;
     box-shadow:
       0 0 0 4px var(--pink-hot),
-      0 24px 50px rgba(74,0,51,.45),
+      0 0 60px 10px rgba(255,63,192,.55),
+      0 26px 55px rgba(74,0,51,.5),
       inset 0 2px 0 rgba(255,255,255,.6);
-    padding: 16px 16px 22px;
     transform: rotate(-2deg);
   }
-  .box::before, .box::after{
-    content:"";
-    position:absolute;
-    top:-14px;
-    width:22px; height:22px;
-    background: var(--paper);
-    border-radius:50%;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,.15);
-  }
-  .box::before{ left: 22px; }
-  .box::after{ right: 22px; }
-
-  .box-brand{
-    font-family:'Pacifico', cursive;
-    font-size: 22px;
-    color:#fff;
-    text-align:center;
-    text-shadow: 0 2px 0 var(--ink);
-    margin-bottom: 10px;
-  }
-
-  .box-window{
-    aspect-ratio: 3 / 4;
-    border-radius: 14px;
-    background: linear-gradient(150deg, var(--pink-paler), var(--pink-pale));
-    border: 3px solid #fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    position:relative;
-  }
-  .box-window img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+  .box-photo{
     display:block;
+    width:100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: top center;
   }
-  .photo-placeholder{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-    padding: 20px;
-    text-align:center;
-    color: var(--pink);
-  }
-  .photo-placeholder svg{ width:52px; height:52px; }
-  .photo-placeholder span{
-    font-family:'Baloo 2', sans-serif;
-    font-weight:700;
-    font-size:14px;
-    color: var(--ink);
-    opacity:.75;
-  }
-
-  .doll-stand{
-    width: 64px;
-    height: 14px;
-    margin: 10px auto 0;
-    background: rgba(255,255,255,.85);
-    border-radius: 0 0 30px 30px / 0 0 60px 60px;
-    box-shadow: inset 0 -3px 4px rgba(0,0,0,.12);
-  }
-
-  .box-spec{
-    margin-top: 12px;
-    text-align:center;
-    font-family:'Baloo 2', sans-serif;
-    font-weight:600;
-    font-size: 11px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    color:#fff;
-    opacity:.9;
+  .box-shine{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(115deg,
+      rgba(255,255,255,.55) 0%,
+      rgba(255,255,255,.15) 12%,
+      transparent 26%,
+      transparent 68%,
+      rgba(255,255,255,.35) 82%,
+      transparent 100%);
+    mix-blend-mode: screen;
+    pointer-events:none;
   }
 
   /* ---- Buttons ---- */
@@ -444,20 +388,8 @@
   <h1>Willst du mit mir<br>ausgehen, Barbie?</h1>
 
   <div class="box">
-    <div class="box-brand">Date Night</div>
-    <div class="box-window">
-      <!-- TODO: Sobald das Foto da ist, hier <img src="assets/barbie/foto.jpg" alt="..."> statt des Platzhalters einsetzen -->
-      <div class="photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <rect x="3" y="6" width="18" height="14" rx="2"/>
-          <circle cx="12" cy="13" r="3.4"/>
-          <path d="M8 6l1.6-2.4h4.8L16 6"/>
-        </svg>
-        <span>Dein Foto<br>kommt hierhin ✨</span>
-      </div>
-    </div>
-    <div class="doll-stand"></div>
-    <div class="box-spec">Style: Perfect Date &nbsp;·&nbsp; Edition: Für dich allein</div>
+    <img class="box-photo" src="assets/barbie/barbie-box.jpg" alt="Barbie The Movie Puppenschachtel in Hochglanz-Pink">
+    <div class="box-shine" aria-hidden="true"></div>
   </div>
 
   <div class="choices">
