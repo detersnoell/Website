@@ -31,8 +31,9 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
 - [x] **Entscheidungen** getroffen (Kap. 10 der Blaupause)
 - [x] **Frontend v1** (`web/`): Startseite, Produktseiten, Drawer, Kasse (ohne Zahlung),
       Manufaktur, Hilfe, Rechts-Platzhalter; Commerce-Adapter lokal + WooCommerce
-- [x] **Design-Tools**: Skills in `.claude/skills/`, Stitch-MCP (`.mcp.json`),
-      Nano-Banana-Skript (`tools/`) – API-Keys vom Nutzer ausstehend
+- [x] **Design-Tools**: kostenlose Skills in `.claude/skills/` (frontend-design,
+      ui-ux-pro-max, design-taste-frontend, redesign-audit). Stitch und Nano Banana
+      auf Wunsch des Nutzers entfernt (keine externen APIs)
 - [~] **Übergangsbilder**: Hasenfüßin eingebaut; Shampoo-Bilder kamen nicht als Datei an
 - [ ] Anti-KI-Optik-Durchgang (frontend-design-Checkliste) – vorgeschlagen
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber

@@ -37,8 +37,3 @@ Playwright in der Cloud-Umgebung: Proxy-CA in NSS importieren
 (`certutil -A -d sql:/root/.pki/nssdb -n agent-proxy-ca -t "C,," -i /root/.ccr/agent-proxy-ca.crt`)
 und `chromium.launch({channel:'chromium', proxy:{server:process.env.HTTPS_PROXY}})`
 für externe Seiten; localhost ohne Proxy.
-
-## Externe Tools
-- Google Stitch (MCP, `.mcp.json`): benötigt Umgebungsvariable `STITCH_API_KEY`.
-- Nano Banana (`tools/nano-banana.mjs`): benötigt `GEMINI_API_KEY`. Nur für
-  Moodboards/Hintergründe – keine KI-Packshots als echte Produktfotos.
