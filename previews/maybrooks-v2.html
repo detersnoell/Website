@@ -1,0 +1,530 @@
+<title>Maybrooks Cottage</title>
+<style>
+  :root{
+    --paper:#FAF8F4;
+    --paper-2:#F1EEE7;
+    --ink:#1C1B18;
+    --ink-soft:#6B6862;
+    --line:#E4E0D6;
+    --surface:#FFFFFF;
+    --lav:#D3D3F0;
+    --lav-deep:#6B67B5;
+    --sage:#D3E4D6;
+    --sage-deep:#4E7A5B;
+    --blush:#F4DCE2;
+    --blush-deep:#B4657C;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#17171A;
+      --paper-2:#1F1F23;
+      --ink:#F3F1EA;
+      --ink-soft:#AFAB9F;
+      --line:#333238;
+      --surface:#1F1F23;
+      --lav:#3B3A63;
+      --lav-deep:#B4B2E8;
+      --sage:#2C3A30;
+      --sage-deep:#9FD1AE;
+      --blush:#3E2A30;
+      --blush-deep:#EBAEBE;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#17171A; --paper-2:#1F1F23; --ink:#F3F1EA; --ink-soft:#AFAB9F;
+    --line:#333238; --surface:#1F1F23; --lav:#3B3A63; --lav-deep:#B4B2E8;
+    --sage:#2C3A30; --sage-deep:#9FD1AE; --blush:#3E2A30; --blush-deep:#EBAEBE;
+    color-scheme:dark;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',ui-sans-serif,system-ui,sans-serif;font-size:16px;line-height:1.55;}
+  img{max-width:100%;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  h1,h2,h3{font-family:'Big Shoulders Display',Impact,sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:.01em;}
+  .wrap{max-width:1220px;margin-inline:auto;padding-inline:24px;}
+  .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+
+  .topbar{display:flex;justify-content:center;gap:32px;padding-block:9px;font-size:12px;letter-spacing:.05em;color:var(--ink-soft);border-bottom:1px solid var(--line);flex-wrap:wrap;}
+
+  header{padding-block:20px;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--paper);z-index:30;}
+  .headerrow{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .wordmark{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:26px;letter-spacing:.02em;text-transform:uppercase;}
+  nav{display:flex;gap:26px;flex-wrap:wrap;}
+  nav a{font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);border-bottom:2px solid transparent;padding-block:2px;}
+  nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--lav-deep);}
+  nav a:focus-visible{outline:2px solid var(--lav-deep);outline-offset:3px;border-radius:2px;}
+  .menu-btn{display:none;}
+  .mobile-nav{display:none;}
+  .icon-btn{background:none;border:none;color:var(--ink);cursor:pointer;padding:6px;border-radius:8px;}
+  .icon-btn:hover{background:var(--paper-2);}
+  .icon-btn:focus-visible{outline:2px solid var(--lav-deep);outline-offset:1px;}
+
+  /* hero */
+  .hero{padding-block:0;}
+  .hero-frame{position:relative;aspect-ratio:16/8.2;background:linear-gradient(150deg,var(--lav) 0%,var(--paper-2) 55%,var(--sage) 100%);display:flex;align-items:flex-end;}
+  .hero-copy{position:relative;z-index:2;padding:48px;max-width:640px;}
+  .hero h1{font-size:clamp(40px,6vw,84px);line-height:.92;text-transform:uppercase;color:var(--ink);}
+  .hero .lede{margin-top:16px;font-size:17px;color:var(--ink-soft);max-width:44ch;}
+  .cta-row{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;letter-spacing:.03em;text-transform:uppercase;padding:14px 26px;border-radius:2px;border:1px solid var(--ink);text-decoration:none;cursor:pointer;transition:background .18s ease,color .18s ease;}
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--ink-soft);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .btn:focus-visible{outline:2px solid var(--lav-deep);outline-offset:2px;}
+  .photo-tag{position:absolute;top:24px;right:24px;background:rgba(255,255,255,.85);backdrop-filter:blur(4px);font-size:11px;letter-spacing:.04em;padding:7px 12px;border-radius:99px;color:var(--ink-soft);z-index:2;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards .15s;}
+    @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  }
+
+  section{padding-block:80px;}
+  .band{background:var(--paper-2);border-block:1px solid var(--line);}
+  h2.title{font-size:clamp(26px,3.4vw,40px);text-transform:uppercase;letter-spacing:.01em;}
+
+  /* value strip */
+  .values-row{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;text-align:center;}
+  .values-row div{max-width:190px;}
+  .values-row .n{font-family:'Big Shoulders Display',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+  .values-row p{font-size:12.5px;color:var(--ink-soft);margin:6px 0 0;}
+
+  /* category tiles */
+  .cat-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;gap:16px;flex-wrap:wrap;}
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cat-tile{position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;display:flex;align-items:flex-end;padding:22px;color:var(--ink);}
+  .cat-tile h3{font-size:22px;text-transform:uppercase;position:relative;z-index:2;}
+  .cat-tile .tag{position:absolute;top:16px;left:16px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.7);padding:5px 10px;border-radius:99px;z-index:2;}
+
+  /* photo slot generic */
+  .photo-slot{position:relative;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;background:var(--surface);}
+  .photo-slot-inner{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;text-align:center;color:var(--ink-soft);}
+  .photo-slot-inner svg{opacity:.5;}
+  .photo-slot-label{font-size:12px;font-weight:600;color:var(--ink);}
+  .photo-slot-hint{font-size:11px;max-width:22ch;line-height:1.35;}
+
+  /* product grid */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .prod-card{display:flex;flex-direction:column;}
+  .prod-media{position:relative;aspect-ratio:3/4;background:var(--surface);border:1px solid var(--line);cursor:zoom-in;overflow:hidden;}
+  .prod-media:hover .expand-hint{opacity:1;}
+  .expand-hint{position:absolute;bottom:10px;right:10px;background:var(--ink);color:var(--paper);font-size:10.5px;letter-spacing:.04em;padding:6px 10px;border-radius:99px;opacity:0;transition:opacity .15s ease;display:flex;align-items:center;gap:5px;pointer-events:none;}
+  .count-pill{position:absolute;top:10px;left:10px;font-size:10.5px;background:rgba(255,255,255,.85);padding:4px 9px;border-radius:99px;color:var(--ink-soft);}
+  .prod-info{padding-block:14px 4px;}
+  .prod-info .tagname{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .prod-info h3{font-family:'Public Sans',sans-serif;font-weight:700;font-size:15.5px;margin-top:4px;text-transform:none;}
+  .prod-info .price{font-size:14px;color:var(--ink-soft);margin-top:4px;}
+  .prod-media:focus-visible{outline:2px solid var(--lav-deep);outline-offset:2px;}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(20,18,15,.86);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .lightbox[hidden]{display:none;}
+  .lb-panel{background:var(--surface);border-radius:6px;max-width:920px;width:100%;display:grid;grid-template-columns:1.3fr 1fr;overflow:hidden;max-height:88vh;}
+  .lb-stage{position:relative;background:var(--paper-2);display:flex;align-items:center;justify-content:center;aspect-ratio:3/4;}
+  .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:var(--surface);border:1px solid var(--line);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .lb-arrow:hover{background:var(--paper-2);}
+  .lb-arrow.prev{left:12px;}
+  .lb-arrow.next{right:12px;}
+  .lb-arrow:focus-visible{outline:2px solid var(--lav-deep);outline-offset:2px;}
+  .lb-dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:7px;}
+  .lb-dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0;}
+  .lb-dot[aria-current="true"]{background:var(--ink);}
+  .lb-side{padding:28px;display:flex;flex-direction:column;overflow-y:auto;}
+  .lb-side .tagname{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .lb-side h3{font-family:'Public Sans',sans-serif;font-weight:700;font-size:20px;margin-top:6px;text-transform:none;}
+  .lb-side .price{margin-top:8px;font-size:16px;}
+  .lb-side p.desc{color:var(--ink-soft);font-size:14px;margin-top:16px;}
+  .lb-side .counter{margin-top:auto;font-size:12px;color:var(--ink-soft);padding-top:16px;}
+  .lb-close{position:absolute;top:14px;right:14px;background:var(--surface);border:1px solid var(--line);width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;}
+  .lb-close:focus-visible,.lb-close:hover{background:var(--paper-2);}
+
+  /* story */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .story p{color:var(--ink-soft);max-width:54ch;margin:0 0 14px;}
+  .story h2{font-size:34px;text-transform:uppercase;margin-bottom:16px;}
+
+  footer{background:var(--ink);color:var(--paper);padding-block:56px 26px;}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;}
+  footer .wordmark{color:var(--paper);}
+  footer p{color:#B9B5AA;font-size:13.5px;max-width:32ch;}
+  footer h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--lav);margin:0 0 14px;}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  footer a{text-decoration:none;color:#B9B5AA;font-size:13.5px;}
+  footer a:hover{color:var(--paper);}
+  .foot-bottom{max-width:1220px;margin:34px auto 0;padding:16px 24px 0;border-top:1px solid #3A3934;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11.5px;color:#8B877D;}
+
+  .draft-badge{position:fixed;bottom:16px;right:16px;z-index:50;background:var(--ink);color:var(--paper);font-size:11px;letter-spacing:.04em;padding:8px 12px;border-radius:8px;opacity:.9;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+
+  @media (max-width:980px){
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .story{grid-template-columns:1fr;}
+    .lb-panel{grid-template-columns:1fr;max-height:92vh;overflow-y:auto;}
+  }
+  @media (max-width:640px){
+    nav{display:none;}
+    .menu-btn{display:flex;}
+    header.nav-open .mobile-nav{display:flex;}
+    .mobile-nav{
+      display:none;flex-direction:column;gap:2px;
+      position:absolute;top:100%;left:0;right:0;background:var(--paper);
+      border-bottom:1px solid var(--line);padding:8px 24px 16px;
+    }
+    .mobile-nav a{padding-block:11px;font-size:14px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line);}
+    .mobile-nav a:last-child{border-bottom:none;}
+    .hero-copy{padding:28px;}
+    .values-row{gap:26px;}
+    .cat-grid{grid-template-columns:1fr;}
+    .prod-grid{grid-template-columns:1fr 1fr;gap:14px;}
+    footer .wrap{grid-template-columns:1fr 1fr;}
+    section{padding-block:56px;}
+  }
+</style>
+
+<div class="topbar">
+  <span>100&nbsp;% vegane Rezeptur</span>
+  <span>Manufaktur im Allgäu</span>
+  <span>Klimaneutraler Versand</span>
+</div>
+
+<header>
+  <div class="wrap headerrow">
+    <div class="wordmark">Maybrooks</div>
+    <nav aria-label="Hauptnavigation">
+      <a href="#pflegeserie">Pflegeserie</a>
+      <a href="#kategorien">Kategorien</a>
+      <a href="#geschichte">Über uns</a>
+      <a href="#qualitaet">Qualität</a>
+    </nav>
+    <div style="display:flex;gap:6px;">
+      <button class="icon-btn" aria-label="Suche"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <button class="icon-btn" aria-label="Warenkorb"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 8h14l-1.4 11.2a2 2 0 0 1-2 1.8H8.4a2 2 0 0 1-2-1.8L5 8Z" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menü öffnen" aria-expanded="false">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#pflegeserie">Pflegeserie</a>
+    <a href="#kategorien">Kategorien</a>
+    <a href="#geschichte">Über uns</a>
+    <a href="#qualitaet">Qualität</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-block:0;">
+    <div class="hero-frame">
+      <span class="photo-tag">Hero-Foto folgt · Platzhalter</span>
+      <div class="hero-copy">
+        <h1 class="rise">Fellpflege,<br>die wirkt</h1>
+        <p class="lede rise">100&nbsp;% vegane Rezepturen aus dem Allgäu — entwickelt für jede Fellfarbe, jede Jahreszeit, jeden Charakter.</p>
+        <div class="cta-row rise">
+          <a class="btn btn-primary" href="#pflegeserie">Serie entdecken</a>
+          <a class="btn btn-ghost" href="#geschichte">Unsere Geschichte</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-block:36px;border-bottom:1px solid var(--line);">
+    <div class="wrap values-row">
+      <div><div class="n">Vegan &amp; Natürlich</div><p>Ohne Chemie, ohne Kompromisse.</p></div>
+      <div><div class="n">pH-Hautneutral</div><p>Auch für sensible Haut geeignet.</p></div>
+      <div><div class="n">Kleine Chargen</div><p>Von Hand gefertigt im Allgäu.</p></div>
+      <div><div class="n">Klimaneutral</div><p>Versand vollständig kompensiert.</p></div>
+    </div>
+  </section>
+
+  <section id="kategorien">
+    <div class="wrap">
+      <div class="cat-head">
+        <div>
+          <div class="eyebrow">Sortiment</div>
+          <h2 class="title">Nach Bedarf sortiert</h2>
+        </div>
+      </div>
+      <div class="cat-grid">
+        <div class="photo-slot cat-tile" style="background:var(--lav);">
+          <span class="tag">Shampoo</span>
+          <div class="photo-slot-inner" style="position:absolute;inset:0;align-items:center;justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="photo-slot-label">Fellshampoos</div>
+          </div>
+          <h3 style="position:relative;">Fellshampoos</h3>
+        </div>
+        <div class="photo-slot cat-tile" style="background:var(--sage);">
+          <span class="tag">Pfoten</span>
+          <div class="photo-slot-inner" style="position:absolute;inset:0;align-items:center;justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="photo-slot-label">Pfotenpflege</div>
+          </div>
+          <h3 style="position:relative;">Pfotenpflege</h3>
+        </div>
+        <div class="photo-slot cat-tile" style="background:var(--blush);">
+          <span class="tag">Finish</span>
+          <div class="photo-slot-inner" style="position:absolute;inset:0;align-items:center;justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.4"/></svg>
+            <div class="photo-slot-label">Fellglanz &amp; Finish</div>
+          </div>
+          <h3 style="position:relative;">Fellglanz &amp; Finish</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="pflegeserie">
+    <div class="wrap">
+      <div class="cat-head">
+        <div>
+          <div class="eyebrow">Bestseller</div>
+          <h2 class="title">Die Pflegeserie</h2>
+        </div>
+        <p style="max-width:34ch;color:var(--ink-soft);font-size:14px;margin:0;">Bild anklicken, um alle Ansichten eines Produkts durchzublättern.</p>
+      </div>
+      <div class="prod-grid" id="prodGrid"></div>
+    </div>
+  </section>
+
+  <section id="qualitaet">
+    <div class="wrap story">
+      <div>
+        <div class="eyebrow">Qualitätsstandards</div>
+        <h2>Was drin ist,<br>zählt</h2>
+        <p>Jede Rezeptur entsteht in kleinen Chargen — geprüft auf Verträglichkeit, abgestimmt auf empfindliche Haut und ohne Zutaten, die dort nichts zu suchen haben.</p>
+        <p>Lavendelöl, Bio-Arganöl, Bienenwachs und Propolis bilden die Basis: vier Rohstoffe, denen wir vertrauen, weil sie sich seit Jahren bewähren — nicht, weil sie gerade im Trend liegen.</p>
+        <a class="btn btn-ghost" href="#pflegeserie">Rezepturen ansehen</a>
+      </div>
+      <div class="photo-slot" style="aspect-ratio:4/5;">
+        <div class="photo-slot-inner">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="13" r="3.4" stroke="currentColor" stroke-width="1.4"/></svg>
+          <div class="photo-slot-label">Produktfoto: Zutaten-Detail</div>
+          <div class="photo-slot-hint">Nahaufnahme Inhaltsstoffe, helles Studiolicht</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="geschichte">
+    <div class="wrap story">
+      <div class="photo-slot" style="aspect-ratio:4/5;">
+        <div class="photo-slot-inner">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 20c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1.4"/></svg>
+          <div class="photo-slot-label">Foto: Team &amp; Manufaktur</div>
+          <div class="photo-slot-hint">Echtes Foto folgt</div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Über Maybrooks</div>
+        <h2>Aus dem Allgäu,<br>für jedes Rudel</h2>
+        <p>Maybrooks entsteht dort, wo die Zutaten herkommen — in einer kleinen Manufaktur im Allgäu. Jede Flasche wird von Hand abgefüllt, jede Rezeptur vor der Auslieferung geprüft.</p>
+        <p>Was uns antreibt, ist einfach: Pflege, die hält, was sie verspricht — ohne Kompromisse bei den Inhaltsstoffen und ohne unnötigen Aufwand für dich und deinen Hund.</p>
+        <a class="btn btn-ghost" href="#pflegeserie">Zur Pflegeserie</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="wordmark" style="font-size:20px;margin-bottom:10px;">Maybrooks</div>
+      <p>Natürliche Fellpflege aus dem Allgäu, handgefertigt in kleinen Chargen.</p>
+    </div>
+    <div>
+      <h4>Marke</h4>
+      <ul><li><a href="#geschichte">Über uns</a></li><li><a href="#qualitaet">Qualitätsstandards</a></li><li><a href="#pflegeserie">Pflegeserie</a></li></ul>
+    </div>
+    <div>
+      <h4>Service</h4>
+      <ul><li><a href="#">Lieferung &amp; Versand</a></li><li><a href="#">Widerruf</a></li><li><a href="#">Kontakt</a></li></ul>
+    </div>
+    <div>
+      <h4>Rechtliches</h4>
+      <ul><li><a href="#">AGB</a></li><li><a href="#">Datenschutz</a></li><li><a href="#">Impressum</a></li></ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© Maybrooks — Alternativentwurf, Testversion</span>
+    <span>Preise inkl. gesetzlicher MwSt.</span>
+  </div>
+</footer>
+
+<div class="draft-badge">Entwurf · nicht die echte Website</div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Produktbilder">
+  <div class="lb-panel">
+    <div class="lb-stage" id="lbStage">
+      <button class="lb-close" id="lbClose" aria-label="Schließen">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="lb-arrow prev" id="lbPrev" aria-label="Vorheriges Bild">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="photo-slot-inner" id="lbSlotInner">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="13" r="3.4" stroke="currentColor" stroke-width="1.4"/></svg>
+        <div class="photo-slot-label" id="lbLabel"></div>
+        <div class="photo-slot-hint" id="lbHint"></div>
+      </div>
+      <button class="lb-arrow next" id="lbNext" aria-label="Nächstes Bild">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="lb-dots" id="lbDots"></div>
+    </div>
+    <div class="lb-side">
+      <div class="tagname" id="lbTag"></div>
+      <h3 id="lbName"></h3>
+      <div class="price" id="lbPrice"></div>
+      <p class="desc" id="lbDesc"></p>
+      <div class="counter" id="lbCounter"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var products = [
+    {
+      id: 'warmduscher', tag: 'Fellshampoo', name: 'Warmduscher',
+      price: 'ab 18,00 €', desc: 'Mildes Shampoo für empfindliche Haut, mit Lavendelöl. Ohne Tränen, ohne Chemie.',
+      images: [
+        { label: 'Frontal · freigestellt', hint: 'Weißer Hintergrund, zentriert' },
+        { label: 'Vor Markenfarbe', hint: 'Pastell-Lavendel, Studiolicht' },
+        { label: 'In Anwendung', hint: 'Lifestyle-Szene beim Baden' }
+      ]
+    },
+    {
+      id: 'raufbold', tag: 'Fellshampoo', name: 'Raufbold',
+      price: 'ab 18,00 €', desc: 'Kräftigendes Shampoo für aktives Fell, mit Bio-Arganöl. Für glänzendes, robustes Fell.',
+      images: [
+        { label: 'Frontal · freigestellt', hint: 'Weißer Hintergrund, zentriert' },
+        { label: 'Vor Markenfarbe', hint: 'Pastell-Salbei, Studiolicht' },
+        { label: 'Textur-Nahaufnahme', hint: 'Schaum &amp; Konsistenz' }
+      ]
+    },
+    {
+      id: 'hasenfuessin', tag: 'Pfotenbalsam', name: 'Hasenfüßin',
+      price: 'ab 14,00 €', desc: 'Balsam mit Bienenwachs &amp; Propolis gegen raue, rissige Pfoten. Unterstützt die Wundheilung.',
+      images: [
+        { label: 'Frontal · freigestellt', hint: 'Weißer Hintergrund, zentriert' },
+        { label: 'Geöffnete Dose', hint: 'Leicht angeschrägt, Detailansicht' },
+        { label: 'In Anwendung', hint: 'Balsam wird auf Pfote aufgetragen' }
+      ]
+    },
+    {
+      id: 'glanzstueck', tag: 'Fellspray', name: 'Glanzstück',
+      price: 'ab 16,00 €', desc: 'Leave-in Spray für zusätzlichen Glanz zwischen den Bädern. Kämmt Verfilzungen sanft aus.',
+      images: [
+        { label: 'Frontal · freigestellt', hint: 'Weißer Hintergrund, zentriert' },
+        { label: 'Vor Markenfarbe', hint: 'Pastell-Blush, Studiolicht' },
+        { label: 'In Anwendung', hint: 'Sprühnebel auf Fell, Lifestyle' }
+      ]
+    }
+  ];
+
+  var grid = document.getElementById('prodGrid');
+  products.forEach(function(p, pi){
+    var card = document.createElement('div');
+    card.className = 'prod-card';
+    card.innerHTML =
+      '<button class="prod-media photo-slot" data-product="' + pi + '" aria-label="' + p.name + ' – Bilder vergrößern, ' + p.images.length + ' Ansichten">' +
+        '<span class="count-pill">1 / ' + p.images.length + '</span>' +
+        '<span class="photo-slot-inner">' +
+          '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.4"/></svg>' +
+          '<span class="photo-slot-label">' + p.images[0].label + '</span>' +
+        '</span>' +
+        '<span class="expand-hint">Vergrößern · ' + p.images.length + ' Ansichten</span>' +
+      '</button>' +
+      '<div class="prod-info">' +
+        '<div class="tagname">' + p.tag + '</div>' +
+        '<h3>' + p.name + '</h3>' +
+        '<div class="price">' + p.price + ' <span style="font-size:11px;">(Beispielpreis)</span></div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  var headerEl = document.querySelector('header');
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', function(){
+    var open = headerEl.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileNav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A'){
+      headerEl.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  var lb = document.getElementById('lightbox');
+  var lbLabel = document.getElementById('lbLabel');
+  var lbHint = document.getElementById('lbHint');
+  var lbTag = document.getElementById('lbTag');
+  var lbName = document.getElementById('lbName');
+  var lbPrice = document.getElementById('lbPrice');
+  var lbDesc = document.getElementById('lbDesc');
+  var lbCounter = document.getElementById('lbCounter');
+  var lbDots = document.getElementById('lbDots');
+  var current = { product: 0, index: 0 };
+  var lastFocused = null;
+
+  function renderLB(){
+    var p = products[current.product];
+    var img = p.images[current.index];
+    lbLabel.textContent = img.label;
+    lbHint.textContent = img.hint;
+    lbTag.textContent = p.tag;
+    lbName.textContent = p.name;
+    lbPrice.textContent = p.price + ' (Beispielpreis)';
+    lbDesc.textContent = p.desc;
+    lbCounter.textContent = 'Ansicht ' + (current.index + 1) + ' von ' + p.images.length;
+    lbDots.innerHTML = '';
+    p.images.forEach(function(_, i){
+      var d = document.createElement('button');
+      d.className = 'lb-dot';
+      d.setAttribute('aria-label', 'Ansicht ' + (i+1));
+      d.setAttribute('aria-current', i === current.index ? 'true' : 'false');
+      d.addEventListener('click', function(){ current.index = i; renderLB(); });
+      lbDots.appendChild(d);
+    });
+  }
+
+  function openLB(pi, trigger){
+    current = { product: pi, index: 0 };
+    lastFocused = trigger || document.activeElement;
+    renderLB();
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lbClose').focus();
+  }
+  function closeLB(){
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+  function next(){ var p = products[current.product]; current.index = (current.index + 1) % p.images.length; renderLB(); }
+  function prev(){ var p = products[current.product]; current.index = (current.index - 1 + p.images.length) % p.images.length; renderLB(); }
+
+  grid.addEventListener('click', function(e){
+    var btn = e.target.closest('.prod-media');
+    if (btn) openLB(parseInt(btn.getAttribute('data-product'), 10), btn);
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLB);
+  document.getElementById('lbNext').addEventListener('click', next);
+  document.getElementById('lbPrev').addEventListener('click', prev);
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLB(); });
+  document.addEventListener('keydown', function(e){
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+})();
+</script>
