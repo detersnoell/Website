@@ -1,0 +1,200 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(240px, 4fr) 8fr;
+  gap: var(--s-7) var(--gutter);
+  align-items: start;
+}
+
+.tabs {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.tab {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "num need" "num product";
+  column-gap: var(--s-4);
+  text-align: left;
+  padding: var(--s-5) 0 var(--s-5) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  transition: color var(--dur-s) var(--ease-out);
+}
+
+.tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: -1px;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-m) var(--ease-out);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--ink);
+}
+
+.tab[aria-selected="true"]::before {
+  transform: scaleY(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover {
+    color: var(--ink);
+  }
+}
+
+.tabNum {
+  grid-area: num;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+  padding-top: 6px;
+}
+
+.tabNeed {
+  grid-area: need;
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  line-height: 1.25;
+}
+
+.tabProduct {
+  grid-area: product;
+}
+
+.hint {
+  margin-top: var(--s-5);
+  max-width: 32ch;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: var(--gutter);
+  align-items: start;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--studio);
+  overflow: hidden;
+  animation: fade var(--dur-m) var(--ease-out);
+}
+
+.media img {
+  object-fit: cover;
+}
+
+.content {
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+  padding-top: var(--s-2);
+  animation: fade var(--dur-s) var(--ease-out);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.kind {
+  color: var(--accent);
+}
+
+.list {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+
+.list li {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+}
+
+.list svg {
+  flex: none;
+  margin-top: 3px;
+}
+
+.notFor {
+  padding: var(--s-4);
+  background: var(--paper-2);
+  color: var(--ink-2);
+}
+
+.notFor strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4) var(--s-6);
+  margin-top: var(--s-3);
+}
+
+@media (max-width: 1099px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+  .media {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 899px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+  .tabs {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--paper);
+    border-top: 0;
+  }
+  .tab {
+    grid-template-columns: 1fr;
+    grid-template-areas: "need" "product";
+    padding: var(--s-3) var(--s-2) var(--s-3);
+    text-align: center;
+  }
+  .tab::before {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: auto;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .tab[aria-selected="true"]::before {
+    transform: scaleX(1);
+  }
+  .tabNum {
+    display: none;
+  }
+  .tabNeed {
+    font-size: 1rem;
+  }
+  .hint {
+    display: none;
+  }
+}

@@ -1,0 +1,346 @@
+/* ───── 1 · Hero-Regal ───── */
+.hero {
+  padding-block: clamp(32px, 1rem + 3vw, 64px) var(--s-8);
+}
+
+/* Kompakter Kopf: Headline links, Beweiszeile rechts unten – Produkte bleiben im ersten Screen */
+.heroHead {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--s-4) var(--gutter);
+  align-items: end;
+  margin-bottom: clamp(24px, 1rem + 2vw, 48px);
+}
+
+.heroHead h1 {
+  font-size: clamp(2.5rem, 1.4rem + 3.2vw, 4.5rem);
+  max-width: 17ch;
+}
+
+.heroProof {
+  justify-self: end;
+  text-align: right;
+  max-width: 30ch;
+}
+
+@media (min-width: 1024px) {
+  .shelf {
+    --card-ratio: 1 / 1;
+  }
+}
+
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gutter);
+}
+
+@media (max-width: 899px) {
+  .heroHead {
+    grid-template-columns: 1fr;
+  }
+  .heroProof {
+    justify-self: start;
+    text-align: left;
+    font-size: var(--fs-small);
+  }
+}
+
+@media (max-width: 767px) {
+  /* Horizontales Snap-Karussell, nächste Karte ragt ins Bild */
+  .shelf {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 72vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--margin);
+    margin-inline: calc(var(--margin) * -1);
+    padding-inline: var(--margin);
+    padding-bottom: var(--s-2);
+    scrollbar-width: none;
+  }
+  .shelf::-webkit-scrollbar {
+    display: none;
+  }
+  .shelf > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* ───── 2 · Beweisleiste ───── */
+.proof {
+  border-block: 1px solid var(--line);
+}
+
+.proofList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.proofList li {
+  padding: var(--s-5) var(--s-5) var(--s-5) 0;
+}
+
+.proofList li + li {
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--line);
+}
+
+.proofTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 899px) {
+  .proofList {
+    grid-template-columns: 1fr 1fr;
+  }
+  .proofList li:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .proofList li:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 479px) {
+  .proofTitle {
+    font-size: 1.125rem;
+  }
+  .proofList li,
+  .proofList li + li {
+    padding: var(--s-4) var(--s-3) var(--s-4) 0;
+  }
+  .proofList li:nth-child(even) {
+    padding-left: var(--s-4);
+  }
+}
+
+/* ───── Sektionskopf ───── */
+.sectionHead {
+  display: grid;
+  gap: var(--s-3);
+  max-width: 720px;
+  margin-bottom: var(--s-8);
+}
+
+@media (max-width: 767px) {
+  .sectionHead {
+    margin-bottom: var(--s-6);
+  }
+}
+
+/* ───── 4 · Inhaltsstoffe ───── */
+.ingredients {
+  background: var(--paper-2);
+}
+
+.ingredientGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gutter);
+}
+
+.ingredient {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding-top: var(--s-5);
+  border-top: 2px solid var(--accent);
+}
+
+.ingredientProduct {
+  color: var(--accent);
+}
+
+.without {
+  margin-top: var(--s-9);
+  display: grid;
+  grid-template-columns: minmax(200px, 3fr) 9fr;
+  gap: var(--s-4) var(--gutter);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.without ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-6);
+}
+
+.without li {
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--ink-3);
+}
+
+.cert {
+  margin-top: var(--s-8);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-6);
+  align-items: start;
+  max-width: 820px;
+}
+
+.cert > div {
+  display: grid;
+  gap: var(--s-3);
+  justify-items: start;
+}
+
+.certMark {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 899px) {
+  .ingredientGrid {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+  .without {
+    grid-template-columns: 1fr;
+    margin-top: var(--s-8);
+  }
+}
+
+@media (max-width: 479px) {
+  .cert {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ───── 5 · Gründerin ───── */
+.founder {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--gutter);
+  align-items: center;
+}
+
+.founderImage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--studio);
+  overflow: hidden;
+}
+
+.founderImage img {
+  object-fit: cover;
+}
+
+.founderText {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: start;
+  padding-left: clamp(0px, 4vw, 64px);
+}
+
+.founderText blockquote {
+  max-width: 24ch;
+}
+
+@media (max-width: 899px) {
+  .founder {
+    grid-template-columns: 1fr;
+  }
+  .founderText {
+    padding-left: 0;
+  }
+}
+
+/* ───── 7 · Sets ───── */
+.sets {
+  border-top: 1px solid var(--line);
+}
+
+.setGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gutter);
+}
+
+.set {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+}
+
+.setImages {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  aspect-ratio: 3 / 2;
+  background: var(--studio);
+  margin-bottom: var(--s-3);
+}
+
+.setImage {
+  position: relative;
+  overflow: hidden;
+}
+
+.setImage img {
+  object-fit: cover;
+}
+
+.setName {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-title);
+}
+
+.setPrice {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  font-weight: 500;
+  margin-bottom: var(--s-2);
+}
+
+.freeTag {
+  color: var(--success);
+  font-weight: 500;
+}
+
+@media (max-width: 899px) {
+  .setGrid {
+    grid-template-columns: 1fr;
+    gap: var(--s-7);
+  }
+}
+
+/* ───── 8 · FAQ ───── */
+.faq {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: var(--s-6) var(--gutter);
+}
+
+.faq header {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  justify-items: start;
+}
+
+@media (max-width: 899px) {
+  .faq {
+    grid-template-columns: 1fr;
+  }
+}

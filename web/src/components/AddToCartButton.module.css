@@ -1,0 +1,43 @@
+.wrapFull {
+  width: 100%;
+}
+
+.btn {
+  display: grid;
+  place-items: center;
+}
+
+.layer {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  opacity: 0;
+  transition: opacity var(--dur-s) var(--ease-out);
+  pointer-events: none;
+}
+
+.layer[data-show="true"] {
+  opacity: 1;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  border-right-color: transparent;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  margin-top: var(--s-2);
+  color: var(--error);
+  font-size: var(--fs-small);
+}

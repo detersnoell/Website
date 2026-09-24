@@ -1,0 +1,92 @@
+.hero {
+  padding-block: clamp(48px, 2rem + 5vw, 120px) var(--s-8);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero h1 {
+  max-width: 16ch;
+}
+
+.intro {
+  margin-top: var(--s-5);
+  max-width: 52ch;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--s-6) var(--gutter);
+  align-items: start;
+}
+
+.prose {
+  display: grid;
+  gap: var(--s-4);
+  max-width: var(--measure);
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-title);
+  margin-top: var(--s-4);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--studio);
+  overflow: hidden;
+}
+
+.media img {
+  object-fit: cover;
+}
+
+.border {
+  border-top: 1px solid var(--line);
+}
+
+.tinted {
+  background: var(--paper-2);
+}
+
+.list {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.list li {
+  padding-left: var(--s-5);
+  position: relative;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 10px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.table td:last-child {
+  text-align: right;
+}
+
+@media (max-width: 899px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}

@@ -747,19 +747,20 @@ Alle Hover-Effekte gelten nur mit `@media (hover:hover) and (pointer:fine)`.
 
 ---
 
-## 10 · Offene Entscheidungen
+## 10 · Entscheidungen
 
-Die Liste mit Optionen und Empfehlungen steht im Chat. Die dort getroffenen Antworten werden hier nachgetragen.
+Stand: 2026-09-24
 
-| # | Entscheidung | Status |
+| # | Entscheidung | Ergebnis |
 |---|---|---|
-| 1 | Designrichtung (Typografie A/B, Farbsystem) | offen |
-| 2 | Wortmarke / Wappen / Name „Maybrooks“ vs. „Maybrooks Cottage“ | offen |
-| 3 | Produkthierarchie (Empfehlung C) + Verkaufszahlen | offen |
-| 4 | Tonalität | offen |
-| 5 | Fotoshooting (Budget/Zeitpunkt) | offen |
-| 6 | Sets & Preise | offen |
-| 7 | B2B / Hundefriseure | offen |
-| 8 | Blog „Ideenräuber“ & Link „Stadtköterei“ | offen |
-| 9 | Backend + Hosting + wer betreibt es | offen |
-| 10 | Kleinere Festlegungen: URLs, mobile Karten, Fakten (vegan, Lieferzeit, Rückgabe, Bewertungen) | offen |
+| 1 | Designrichtung | **A:** Serif-Display (Newsreader) + Grotesk (Hanken Grotesk), Papier/Ink, Ink als einzige CTA-Farbe |
+| 2 | Logo/Name | **Wortmarke „Maybrooks“** im Header. Wappen später als dezenter Hintergrund/Banner; ein Versuch ist erlaubt, wirkt es nicht, entfällt es |
+| 3 | Produkthierarchie | Logik **„Oder + Und“** (Signature-Produkt ggf. später nach Verkaufszahlen) |
+| 4 | Tonalität | „Charme im Namen, Klarheit in der Sache“, kein größerer Humor |
+| 5 | Fotos | Shooting geplant. Übergangsweise liefert der Nutzer 3 Bilder pro Produkt (9 insgesamt) |
+| 6 | Sets | wie beschrieben: **Duo „Shampoo + Hasenfüßin“** (empfohlen) + **„Alle drei“**. Rabatthöhe noch offen, vorerst ohne Rabatt |
+| 7 | B2B | Händler relevant, Hundefriseure untergeordnet. Nur als Kontaktanliegen in Hilfe/Footer, nicht im Hauptauftritt |
+| 8 | Blog & Stadtköterei | Blog entfällt zum Start. **Stadtköterei entfällt komplett** (Einzelhandel existiert nicht mehr) |
+| 9 | Backend | vorerst weiter vom Nutzer betreut. Frontend **kompatibel zu WooCommerce** (Store API), aber über die Adapter-Schicht **austauschbar**. Endgültige Backend-Wahl offen |
+| 10 | Vegan | Laut Nutzer ist die Hasenfüßin vegan. **Widerspruch zur veröffentlichten INCI** (cera alba, propolis, mel). Bis zur Klärung „vegan“ nur für die Shampoos |
+| — | Versand-/Rückgabefakten, Bewertungen | kommen später |

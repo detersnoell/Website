@@ -1,0 +1,109 @@
+.footer {
+  background: var(--ink);
+  color: var(--on-ink);
+  padding-top: var(--s-9);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: var(--s-7) var(--gutter);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+.claim {
+  margin-top: var(--s-4);
+  max-width: 34ch;
+  color: var(--on-ink-2);
+}
+
+.heading {
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-ink-2);
+  margin-bottom: var(--s-4);
+}
+
+.col li + li {
+  margin-top: var(--s-2);
+}
+
+.col a {
+  display: inline-block;
+  padding-block: 2px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .col a:hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* Wappen als Siegel: groß, sehr dezent, als Prägung */
+.seal {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--s-8) var(--s-6);
+}
+
+.sealImage {
+  width: 112px;
+  height: auto;
+  filter: invert(1);
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--s-5) calc(var(--s-5) + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(245, 242, 236, 0.14);
+  font-size: var(--fs-small);
+  color: var(--on-ink-2);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+}
+
+.legal a:hover {
+  color: var(--on-ink);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 479px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
