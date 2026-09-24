@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { allProducts, bundles, bundlePrice, products } from "@/lib/catalog/products";
 import { formatPrice } from "@/lib/money";
 import { store } from "@/lib/store";

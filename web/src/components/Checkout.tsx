@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { formatPrice } from "@/lib/money";
 import { store } from "@/lib/store";

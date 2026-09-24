@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { allProducts } from "@/lib/catalog/products";
 import { store } from "@/lib/store";
 import styles from "./Footer.module.css";

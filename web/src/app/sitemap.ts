@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { productOrder } from "@/lib/catalog/products";
 
+export const dynamic = "force-static";
+
 const base = "https://www.maybrooks.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {

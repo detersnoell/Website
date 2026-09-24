@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { notFound } from "next/navigation";
 import { allProducts, bundles, bundlePrice, getProduct, productOrder, products } from "@/lib/catalog/products";
 import { formatPrice, unitPricePerLitre } from "@/lib/money";

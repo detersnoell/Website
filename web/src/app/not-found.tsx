@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { allProducts } from "@/lib/catalog/products";
 import s from "./content.module.css";
 

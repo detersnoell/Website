@@ -36,9 +36,11 @@ export function ContactForm() {
       if (res.ok) {
         setState("sent");
         track("generate_lead", { topic: values.topic });
-      } else setState(res.status === 503 ? "unavailable" : "error");
+      } else if (res.status === 422) setState("error");
+      // Kein Mailanbieter oder kein Server erreichbar: ehrlich auf die E-Mail-Adresse verweisen
+      else setState("unavailable");
     } catch {
-      setState("error");
+      setState("unavailable");
     }
   }
 

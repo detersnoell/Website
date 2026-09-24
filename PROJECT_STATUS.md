@@ -51,6 +51,16 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
       Namen, Standards; Textabgleich mit Originalseite
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
+## Vorschau-Link
+
+Statische Vorschau (Artifact, privat; Freigabe über das Share-Menü der Seite):
+https://claude.ai/artifact/1rXJq4hUdvbP635VNorNPR
+
+Erzeugen: `cd web && npm run build:preview` → `web/out/` (flache .html-Seiten, relative
+Pfade, Next-Ordner als `nx/`, keine API-Routen). Aktualisieren: dieselbe URL erneut
+veröffentlichen. Hinweis: GitHub Pages dieses Repos zeigt eine andere Seite (Branch
+`claude/quirky-hawking-7vb1j5`) – nicht überschreiben.
+
 ## Technischer Hinweis (Cloud-Umgebung)
 
 Der Playwright-Browser brauchte die Proxy-CA im NSS-Store:
