@@ -97,3 +97,34 @@
   margin-top: var(--s-6);
   font-size: var(--fs-body-l);
 }
+
+.contact {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--s-6) var(--gutter);
+  align-items: center;
+}
+
+.contactImage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--studio);
+  overflow: hidden;
+}
+
+.contactImage img {
+  object-fit: cover;
+}
+
+.contact .prose {
+  padding-left: clamp(0px, 5vw, 96px);
+}
+
+@media (max-width: 899px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+  .contact .prose {
+    padding-left: 0;
+  }
+}

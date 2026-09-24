@@ -38,8 +38,9 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
 - [x] Anti-KI-Optik-Durchgang: keine Rundungen, keine Versal-Labels, keine „A · B · C“-
       Zeilen, keine Pfeile, keine Scheinnummerierung, keine Einblend-Animationen,
       hellerer Papierton, heller Footer, Zeilen statt Dreier-Karten, 404-Seite
-- [ ] Hochauflösendes Wappen, Vizsla-Foto, Gründerinnen-Foto, altes Hero-Motiv:
-      kamen nur als Anzeige, nicht als Datei – Nutzer schickt erneut
+- [x] Gründerinnen-Foto im Kontaktbereich (`/hilfe#kontakt`), wer hinter der Marke steht
+- [ ] Hochauflösendes Wappen, altes Hero-Motiv (Annotationen, im Code nachbauen):
+      kamen nur als Anzeige, nicht als Datei. Vizsla-Foto optional
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
 ## Technischer Hinweis (Cloud-Umgebung)

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Accordion } from "@/components/Accordion";
 import { formatPrice } from "@/lib/money";
@@ -68,19 +69,31 @@ export default function Hilfe() {
         </div>
       </section>
 
-      <section id="kontakt" className={`section ${s.border} ${s.tinted}`}>
-        <div className={`container ${s.split}`}>
-          <h2 className="display-m">Kontakt</h2>
+      <section id="kontakt" className={`section ${s.tinted}`}>
+        <div className={`container ${s.contact}`}>
+          <div className={s.contactImage}>
+            <Image
+              src="/images/brand/gruenderin-mit-hund.jpg"
+              alt="Daniela Köchling, Gründerin von Maybrooks, mit ihrem Hund"
+              fill
+              sizes="(max-width: 899px) 100vw, 40vw"
+            />
+          </div>
           <div className={s.prose}>
+            <h2 className="display-l">Kontakt</h2>
             <p className="body-l">
-              Schreib uns an{" "}
+              Hinter Maybrooks steht Daniela Köchling, Züchterin, Hundetrainerin und Gründerin. Bei Fragen zu einer Bestellung, zur Pflege deines Hundes oder
+              zu unseren Produkten sind wir für dich da.
+            </p>
+            <p className="body-l">
               <a className="link" href={`mailto:${store.contact.email}`}>
                 {store.contact.email}
               </a>
-              .
             </p>
-            <h3>Für Händler &amp; Hundefriseure</h3>
-            <p className="muted">Du möchtest Maybrooks in deinem Geschäft anbieten oder im Salon verwenden? Schreib uns mit dem Betreff „Händleranfrage“.</p>
+            <h3>Für Händler</h3>
+            <p className="muted">
+              Du möchtest Maybrooks in deinem Geschäft anbieten oder im Salon verwenden? Schreib uns mit dem Betreff „Händleranfrage“.
+            </p>
           </div>
         </div>
       </section>
