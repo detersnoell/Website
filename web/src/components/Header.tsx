@@ -15,6 +15,7 @@ export function Header() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [sheetProductsOpen, setSheetProductsOpen] = useState(false);
   const panelTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const headerRef = useRef<HTMLElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
@@ -45,8 +46,14 @@ export function Header() {
   // Mobiles Menü: Scroll sperren, Fokus hinein und beim Schließen zurück zum Button
   useEffect(() => {
     document.documentElement.style.overflow = menuOpen ? "hidden" : "";
-    if (!menuOpen) return;
-    sheetRef.current?.querySelector<HTMLElement>("a")?.focus();
+    if (!menuOpen) {
+      setSheetProductsOpen(false);
+      return;
+    }
+    // Das Menü beginnt direkt unter dem Header, auch wenn die Hinweiszeile darüber noch sichtbar ist
+    const bottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+    sheetRef.current?.style.setProperty("--sheet-top", `${Math.max(0, bottom)}px`);
+    sheetRef.current?.querySelector<HTMLElement>("a, button")?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMenuOpen(false);
@@ -103,7 +110,8 @@ export function Header() {
           </button>
 
           <Link href="/" className={styles.wordmark} aria-label="Maybrooks – Startseite">
-            Maybrooks
+            <Image src="/images/brand/wappen-emblem.png" alt="" width={123} height={94} className={styles.crest} priority />
+            <span>Maybrooks</span>
           </Link>
 
           <nav className={styles.nav} aria-label="Hauptnavigation">
@@ -166,25 +174,53 @@ export function Header() {
 
       <div ref={sheetRef} id="mobile-menu" className={styles.sheet} data-open={menuOpen} aria-hidden={!menuOpen} inert={!menuOpen}>
         <nav aria-label="Menü">
-          <ul className={styles.sheetProducts}>
-            {allProducts.map((p) => (
-              <li key={p.slug}>
-                <Link href={`/${p.slug}`} className={styles.sheetProduct}>
-                  <span className={styles.sheetImage}>
-                    <Image src={p.images[0].src} alt="" fill sizes="72px" style={{ objectPosition: p.images[0].focus }} />
-                  </span>
-                  <span>
-                    <span className={styles.sheetName}>{p.name}</span>
-                    <span className="small muted">{p.forWhom}</span>
-                  </span>
-                  <span className="small num">{formatPrice(p.variants[0].priceGross)}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
           <ul className={styles.sheetLinks}>
             <li>
-              <Link href="/#sets">Sets</Link>
+              <button
+                type="button"
+                className={styles.sheetToggle}
+                aria-expanded={sheetProductsOpen}
+                aria-controls="sheet-products"
+                onClick={() => setSheetProductsOpen((o) => !o)}
+              >
+                <span>
+                  Unsere Produkte
+                  <span className={styles.sheetSub}>Natürliche Pflege für Fell, Haut und Pfoten</span>
+                </span>
+                <span className={styles.sign} aria-hidden="true" />
+              </button>
+              <div id="sheet-products" className={styles.sheetPanel} data-open={sheetProductsOpen}>
+                <div className={styles.sheetPanelInner}>
+                  <ul className={styles.sheetProducts}>
+                    {allProducts.map((p) => (
+                      <li key={p.slug}>
+                        <Link href={`/${p.slug}`} className={styles.sheetProduct}>
+                          <span className={styles.sheetImage}>
+                            <Image src={p.images[0].src} alt="" fill sizes="48px" style={{ objectPosition: p.images[0].focus }} />
+                          </span>
+                          <span>
+                            <span className={styles.sheetName}>{p.name}</span>
+                            <span className={`small muted ${styles.sheetFor}`}>{p.forWhom}</span>
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className={styles.sheetMore}>
+                    <Link href="/#produkte" className="link small" onClick={() => setMenuOpen(false)}>
+                      Alle Produkte
+                    </Link>
+                    <Link href="/#auswahl" className="link small" onClick={() => setMenuOpen(false)}>
+                      Welche Pflege passt?
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <Link href="/#sets" onClick={() => setMenuOpen(false)}>
+                Sets
+              </Link>
             </li>
             <li>
               <Link href="/ueber-uns">Über uns</Link>

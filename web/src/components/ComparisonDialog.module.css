@@ -1,0 +1,111 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 44px;
+  font-size: var(--fs-small);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  transition: text-decoration-color var(--dur-s) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trigger:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* kleines Tabellen-Zeichen, wie bei einer Größentabelle */
+.triggerIcon {
+  flex: none;
+  width: 16px;
+  height: 12px;
+  border: 1.5px solid currentColor;
+  background:
+    linear-gradient(currentColor, currentColor) 0 50% / 100% 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) 50% 0 / 1.5px 100% no-repeat;
+}
+
+.dialog {
+  margin: 0 0 0 auto;
+  width: min(760px, 100vw);
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-float);
+}
+
+.dialog[open] {
+  animation: slide-in var(--dur-l) var(--ease-out);
+}
+
+.dialog::backdrop {
+  background: var(--overlay);
+}
+
+.dialog[open]::backdrop {
+  animation: fade var(--dur-l) var(--ease-out);
+}
+
+.inner {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+  padding: var(--s-6) var(--s-7) var(--s-8);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: var(--s-4);
+}
+
+.close {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -8px -10px 0 0;
+  flex: none;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(32px);
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .dialog {
+    margin: auto 0 0 0;
+    width: 100vw;
+    height: auto;
+    max-height: 88dvh;
+  }
+  .dialog[open] {
+    animation-name: slide-up;
+  }
+  .inner {
+    padding: var(--s-5) var(--margin) var(--s-7);
+  }
+  @keyframes slide-up {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+  }
+}

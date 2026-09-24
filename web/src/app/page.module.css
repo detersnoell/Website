@@ -1,12 +1,54 @@
-/* ───── Hero: Produkte ───── */
-.hero {
-  padding-block: clamp(28px, 1rem + 2.4vw, 56px) var(--s-9);
+/* ───── Erster Eindruck: Motiv ───── */
+.intro {
+  background: var(--hero);
 }
 
-.heroTitle {
-  font-size: clamp(2.5rem, 1.3rem + 3.2vw, 4.5rem);
-  max-width: 22ch;
-  margin-bottom: clamp(28px, 1rem + 2vw, 48px);
+.introImage {
+  display: flex;
+  justify-content: center;
+}
+
+/* Die Motivkanten sind im Bild bereits in den Grundton --hero ausgeblendet */
+.introImage img {
+  width: auto;
+  height: calc(100svh - var(--header-h) - var(--announce-h));
+  max-height: 1270px;
+  min-height: 420px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.introText {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-5);
+  padding-block: var(--s-8) var(--section);
+  text-align: center;
+}
+
+.introText h1 {
+  max-width: 18ch;
+}
+
+.introText p {
+  max-width: 44ch;
+}
+
+@media (max-width: 767px) {
+  .introImage img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+  .introText {
+    padding-top: var(--s-6);
+    gap: var(--s-4);
+  }
+}
+
+/* ───── Produkte ───── */
+.products {
+  padding-block: var(--section) var(--s-9);
 }
 
 .shelf {
@@ -22,7 +64,7 @@
 }
 
 @media (max-width: 767px) {
-  .hero {
+  .products {
     padding-bottom: var(--s-8);
   }
   /* Horizontales Snap-Karussell, die nächste Karte ragt ins Bild */
@@ -105,138 +147,6 @@
   }
   .splitHead {
     padding-right: 0;
-  }
-}
-
-/* ───── Was drin ist: Anmerkungen am Produkt ───── */
-.annotHead {
-  display: grid;
-  gap: var(--s-4);
-  max-width: 44rem;
-  margin-bottom: clamp(40px, 2rem + 3vw, 88px);
-}
-
-.annot {
-  display: grid;
-  grid-template-columns: 1fr minmax(0, 17rem) minmax(0, 17rem) 1fr;
-  gap: var(--gutter);
-  align-items: center;
-}
-
-.annotImage {
-  position: relative;
-  display: block;
-  aspect-ratio: 3 / 4;
-  background: var(--studio);
-  overflow: hidden;
-}
-
-.annotImage img {
-  object-fit: cover;
-}
-
-.annotLabel {
-  position: absolute;
-  left: var(--s-4);
-  bottom: var(--s-3);
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  color: var(--ink);
-  background: var(--paper);
-  padding: 2px var(--s-2);
-}
-
-.notes {
-  display: grid;
-  gap: var(--s-7);
-}
-
-.notes li {
-  display: flex;
-  align-items: center;
-  gap: var(--s-4);
-  font-family: var(--font-display);
-  font-size: var(--fs-title);
-  line-height: 1.25;
-}
-
-/* feine Führungslinie Richtung Produkt */
-.notes li::after,
-.notes li::before {
-  flex: 0 0 clamp(24px, 4vw, 64px);
-  height: 1px;
-  background: var(--ink);
-}
-
-.notesLeft li {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.notesLeft li::after {
-  content: "";
-}
-
-.notesRight li::before {
-  content: "";
-}
-
-.annotFoot {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-4) var(--gutter);
-  margin-top: clamp(40px, 2rem + 3vw, 88px);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line-strong);
-}
-
-@media (max-width: 1099px) {
-  .notes li {
-    font-size: 1.125rem;
-  }
-}
-
-@media (max-width: 899px) {
-  .annot {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "imgA imgB"
-      "left right";
-    align-items: start;
-    row-gap: var(--s-5);
-  }
-  .annot > :nth-child(1) {
-    grid-area: left;
-  }
-  .annot > :nth-child(2) {
-    grid-area: imgA;
-  }
-  .annot > :nth-child(3) {
-    grid-area: imgB;
-  }
-  .annot > :nth-child(4) {
-    grid-area: right;
-  }
-  .notes {
-    gap: var(--s-3);
-  }
-  .notesLeft li {
-    justify-content: flex-start;
-    text-align: left;
-    flex-direction: row-reverse;
-  }
-  .notes li::after,
-  .notes li::before {
-    flex-basis: 16px;
-    align-self: center;
-  }
-  .notes li {
-    align-items: baseline;
-    font-size: 1rem;
-    line-height: 1.35;
-  }
-  .annotFoot {
-    grid-template-columns: 1fr;
   }
 }
 

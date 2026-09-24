@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { NeedsSelector } from "@/components/NeedsSelector";
 import { Accordion } from "@/components/Accordion";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { ButtonLink } from "@/components/Button";
 import styles from "./page.module.css";
 
 const proofs = [
@@ -15,12 +16,6 @@ const proofs = [
   { title: "Seifen- und schaumfrei", text: "Mild und auf Hundehaut abgestimmt." },
   { title: "Von einer Züchterin", text: "Entwickelt aus 35 Jahren Erfahrung mit Hunden." },
 ];
-
-/* Anmerkungen am Produkt – Signatur, angelehnt an die ursprüngliche Seite */
-const annotations = {
-  warmduscher: ["Mit Lavendelöl", "Für empfindliche und allergieanfällige Haut", "Beruhigt gereizte Hautstellen"],
-  raufbold: ["Mit Bio-Arganöl", "Für Glanz und geschmeidiges Fell", "Leichter zu kämmen"],
-};
 
 const faq = [
   {
@@ -54,15 +49,36 @@ const faq = [
 export default function Home() {
   return (
     <>
-      {/* Die Produkte sind der Hero */}
-      <section id="produkte" className={styles.hero} aria-labelledby="hero-title">
-        <div className="container">
-          <h1 id="hero-title" className={`display-xl ${styles.heroTitle}`}>
+      {/* Erster Eindruck: das Motiv mit den Notizen, erst danach die Produkte */}
+      <section className={styles.intro} aria-labelledby="hero-title">
+        <div className={styles.introImage}>
+          <Image
+            src="/images/brand/hero-shampoos.jpg"
+            alt="Warmduscher und Raufbold nebeneinander, mit handschriftlichen Notizen: reinigt gereizte Haut, spendet Feuchtigkeit, mit Lavendelöl; macht starkes, gesundes und glänzendes Fell, mit Bio-Arganöl, sorgt für leichte Kämmbarkeit."
+            width={1145}
+            height={1270}
+            priority
+            fetchPriority="high"
+            sizes="(max-width: 767px) 100vw, 60vw"
+          />
+        </div>
+        <div className={`container ${styles.introText}`}>
+          <h1 id="hero-title" className="display-l">
             Natürliche Pflege für Fell, Haut und Pfoten.
           </h1>
+          <p className="body-l muted">Entwickelt von einer Züchterin, hergestellt in einer kleinen Manufaktur im Allgäu.</p>
+          <ButtonLink href="#produkte">Unsere Produkte</ButtonLink>
+        </div>
+      </section>
+
+      <section id="produkte" className={styles.products} aria-labelledby="produkte-title">
+        <div className="container">
+          <h2 id="produkte-title" className={`display-l ${styles.sectionTitle}`}>
+            Unsere Produkte
+          </h2>
           <div className={styles.shelf}>
-            {allProducts.map((p, i) => (
-              <ProductCard key={p.slug} product={p} priority={i === 0} headingLevel="h2" />
+            {allProducts.map((p) => (
+              <ProductCard key={p.slug} product={p} />
             ))}
           </div>
         </div>
@@ -85,66 +101,6 @@ export default function Home() {
             Welche Pflege braucht dein Hund?
           </h2>
           <NeedsSelector />
-        </div>
-      </section>
-
-      <section className={`section ${styles.tinted}`} aria-labelledby="inhalt-title">
-        <div className="container">
-          <div className={styles.annotHead}>
-            <h2 id="inhalt-title" className="display-l">
-              Was drin ist.
-            </h2>
-            <p className="body-l muted">Inhaltsstoffe, für die man keinen Übersetzer braucht. Jeder einzelne steht offen auf der Produktseite.</p>
-          </div>
-
-          <div className={styles.annot}>
-            <ul className={`${styles.notes} ${styles.notesLeft}`} aria-label="Warmduscher">
-              {annotations.warmduscher.map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
-            <Link href="/warmduscher#inhaltsstoffe" className={styles.annotImage}>
-              <Image
-                src={products.warmduscher.images[0].src}
-                alt="Warmduscher"
-                fill
-                sizes="(max-width: 767px) 50vw, 22vw"
-                style={{ objectPosition: products.warmduscher.images[0].focus }}
-              />
-              <span className={styles.annotLabel}>Warmduscher</span>
-            </Link>
-            <Link href="/raufbold#inhaltsstoffe" className={styles.annotImage}>
-              <Image
-                src={products.raufbold.images[0].src}
-                alt="Raufbold"
-                fill
-                sizes="(max-width: 767px) 50vw, 22vw"
-                style={{ objectPosition: products.raufbold.images[0].focus }}
-              />
-              <span className={styles.annotLabel}>Raufbold</span>
-            </Link>
-            <ul className={`${styles.notes} ${styles.notesRight}`} aria-label="Raufbold">
-              {annotations.raufbold.map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className={styles.annotFoot}>
-            <p>
-              Beide Shampoos sind seifen- und schaumfrei und auf die Hundehaut abgestimmt. Die{" "}
-              <Link href="/hasenfuessin#inhaltsstoffe" className="link">
-                Hasenfüßin
-              </Link>{" "}
-              pflegt mit Mandel- und Jojobaöl, Propolis und Carnaubawachs.
-            </p>
-            <p className="muted">
-              Alle Produkte sind nach dem Natural Product Standard, approved by BDIH, zertifiziert und werden laufend von der IONC GmbH kontrolliert.{" "}
-              <Link href="/ueber-uns#standards" className="link">
-                Unsere Standards
-              </Link>
-            </p>
-          </div>
         </div>
       </section>
 

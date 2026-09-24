@@ -79,13 +79,7 @@
 }
 
 .list {
-  display: grid;
-  border-top: 1px solid var(--line);
-}
-
-.list li {
-  padding-block: var(--s-3);
-  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
 }
 
 .notFor {

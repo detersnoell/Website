@@ -14,6 +14,11 @@
   padding-left: clamp(0px, 2vw, 32px);
 }
 
+.title {
+  display: grid;
+  gap: var(--s-2);
+}
+
 .for {
   color: var(--ink-2);
   max-width: 34ch;
@@ -52,15 +57,16 @@
 }
 
 .highlights {
-  display: grid;
-  margin-top: var(--s-3);
-  border-top: 1px solid var(--line);
+  margin-top: var(--s-2);
+  color: var(--ink-2);
 }
 
-.highlights li {
-  padding-block: var(--s-3);
-  border-bottom: 1px solid var(--line);
-  font-size: var(--fs-small);
+.companion {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
 }
 
 .companionLabel {
@@ -68,25 +74,34 @@
   color: var(--ink-2);
 }
 
-.companion {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--s-1) var(--s-4);
-  align-items: end;
-  margin-top: var(--s-4);
-}
-
-.companion p {
-  grid-column: 1 / -1;
-}
-
 .companionLink {
   display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: var(--s-4);
+  align-items: center;
+}
+
+.companionImage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--studio);
+  overflow: hidden;
+}
+
+.companionImage img {
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+}
+
+.companionText {
+  display: grid;
+  gap: 2px;
 }
 
 .companionName {
   font-family: var(--font-display);
   font-size: var(--fs-title);
+  line-height: 1.2;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -94,6 +109,9 @@
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
+  }
+  .companionLink:hover .companionImage img {
+    transform: scale(1.04);
   }
 }
 
@@ -132,6 +150,11 @@
   font-weight: 500;
 }
 
+/* Inhaltsstoffe: beiger Grund, die wichtigsten in der Produktfarbe */
+.ingredients {
+  background: var(--paper-2);
+}
+
 .keys {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -142,95 +165,151 @@
   display: grid;
   gap: var(--s-2);
   align-content: start;
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line-strong);
+  padding-top: var(--s-4);
+  border-top: 3px solid var(--accent);
 }
 
 .keyName {
   font-family: var(--font-display);
   font-size: var(--fs-display-m);
   line-height: 1.12;
+  color: var(--accent-ink);
 }
 
-.facts {
+.keyText {
+  color: var(--ink-2);
+  max-width: 30ch;
+}
+
+.ingredientsFoot {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--s-6) var(--gutter);
+  align-items: start;
+  margin-top: clamp(48px, 2rem + 3vw, 96px);
+}
+
+/* NPS-Zertifikat: eigener, eingefärbter Block */
+.cert {
   display: grid;
   gap: var(--s-3);
-  margin-top: var(--s-6);
-}
-
-.facts div {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: var(--s-4);
-  padding-bottom: var(--s-3);
-  border-bottom: 1px solid var(--line);
-}
-
-.steps {
-  display: grid;
-  gap: 0;
-  counter-reset: step;
-}
-
-.steps li {
-  display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: var(--s-4);
-  padding-block: var(--s-5);
-  border-bottom: 1px solid var(--line);
-  font-size: var(--fs-body-l);
-}
-
-.steps li:first-child {
-  border-top: 1px solid var(--line);
-}
-
-.stepNum {
-  font-size: var(--fs-small);
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-2);
-  padding-top: 0.3em;
-}
-
-.certNote {
-  margin-top: var(--s-6);
-  padding: var(--s-4) var(--s-5);
-  border: 1px solid var(--line);
-  color: var(--ink-2);
-}
-
-.certNote strong {
+  padding: var(--s-6);
+  background: var(--cert);
   color: var(--ink);
-  font-weight: 500;
+}
+
+.cert .small {
+  color: var(--ink-2);
+}
+
+.certTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  line-height: 1.2;
+  color: var(--cert-ink);
+}
+
+.certSeal {
+  width: 32px;
+  height: 32px;
+  flex: none;
+}
+
+.inciWrap {
+  padding-left: clamp(0px, 3vw, 48px);
 }
 
 .inci {
   width: 100%;
+  margin-top: var(--s-4);
   border-collapse: collapse;
   font-size: var(--fs-small);
+  line-height: 1.45;
 }
 
 .inci th {
   text-align: left;
   font-weight: 500;
-  font-size: var(--fs-small);
   color: var(--ink-2);
-  padding-bottom: var(--s-3);
+  padding-bottom: var(--s-2);
   border-bottom: 1px solid var(--line-strong);
 }
 
 .inci td {
-  padding-block: var(--s-3);
+  padding-block: var(--s-2);
   border-bottom: 1px solid var(--line);
   vertical-align: top;
 }
 
 .inci td:first-child {
-  width: 50%;
+  width: 55%;
   padding-right: var(--s-4);
+  color: var(--ink);
 }
 
-.inci td:last-child {
+/* Anwendung: geschlossener Bereich */
+.howto {
+  display: grid;
+  gap: var(--s-7);
+  padding: clamp(28px, 1rem + 3vw, 72px);
+  background: var(--paper-2);
+}
+
+.howtoHead {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-6) var(--gutter);
+}
+
+.steps li {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line-strong);
+}
+
+.steps p {
+  max-width: 34ch;
+}
+
+.stepNum {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-m);
+  line-height: 1;
+  color: var(--accent-ink);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: var(--s-4) 0;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-small);
+}
+
+.facts div {
+  padding-inline: 0 var(--s-6);
+  margin-right: var(--s-6);
+  border-right: 1px solid var(--line);
+}
+
+.facts div:last-child {
+  border-right: 0;
+  margin-right: 0;
+}
+
+.facts dt {
   color: var(--ink-2);
 }
 
@@ -253,9 +332,24 @@
   .top {
     grid-template-columns: 1fr 1fr;
   }
-  .keys {
+  .keys,
+  .steps {
     grid-template-columns: 1fr;
-    gap: var(--s-6);
+    gap: var(--s-5);
+  }
+  .steps li {
+    grid-template-columns: 40px 1fr;
+    gap: var(--s-4);
+  }
+  .stepNum {
+    font-size: var(--fs-title);
+    padding-top: 0.05em;
+  }
+  .ingredientsFoot {
+    grid-template-columns: 1fr;
+  }
+  .inciWrap {
+    padding-left: 0;
   }
 }
 
@@ -273,9 +367,18 @@
   .split {
     grid-template-columns: 1fr;
   }
-  .keys {
+  .facts {
     grid-template-columns: 1fr;
-    gap: var(--s-6);
+  }
+  .facts div {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: var(--s-4);
+    margin-right: 0;
+    border-right: 0;
+  }
+  .cert {
+    padding: var(--s-5);
   }
   .related {
     grid-template-columns: 1fr 1fr;
@@ -285,8 +388,3 @@
   }
 }
 
-@media (max-width: 479px) {
-  .inci td:first-child {
-    width: 55%;
-  }
-}

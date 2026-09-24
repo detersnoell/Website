@@ -3,19 +3,27 @@
 
 :root {
   /* Farbe */
-  --paper: #faf9f7;
-  --paper-2: #f2f0ec;
-  --studio: #efede9;
+  /* Papier: sehr helle, erdige Beige-Nuancen (kein Grau) */
+  --paper: #fbf9f5;
+  --paper-2: #f4f0e8;
+  --studio: #efe9df;
+  --hero: #f2eee5; /* exakt der Grundton des Hero-Motivs */
+  --cert: #eef0e3; /* NPS-Siegel: sehr helles Salbeigrün */
+  --cert-ink: #3f5a1f;
   --ink: #1c1b19;
   --ink-2: #5e5a53;
   --ink-3: #8a857c;
-  --line: rgba(28, 27, 25, 0.1);
-  --line-strong: rgba(28, 27, 25, 0.3);
+  --line: rgba(60, 48, 30, 0.12);
+  --line-strong: rgba(60, 48, 30, 0.32);
   --on-ink: #f5f2ec;
   --on-ink-2: rgba(245, 242, 236, 0.66);
   --accent-warmduscher: #6f6488;
   --accent-raufbold: #9a7b4f;
   --accent-hasenfuessin: #b7792f;
+  /* dunklere Varianten für Text (Kontrast ≥ 4,5:1 auf Papier) */
+  --accent-warmduscher-ink: #5f5578;
+  --accent-raufbold-ink: #74592f;
+  --accent-hasenfuessin-ink: #85541a;
   --success: #2f6b4f;
   --error: #a23b2a;
   --overlay: rgba(28, 27, 25, 0.4);
@@ -202,6 +210,27 @@ button {
 
 .num {
   font-variant-numeric: tabular-nums;
+}
+
+/* Merkmalliste: kurzer Strich in Produktfarbe statt Tabellenzeilen */
+.ticks {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.ticks li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: var(--s-3);
+  align-items: start;
+  line-height: 1.5;
+}
+
+.ticks li::before {
+  content: "";
+  height: 1.5px;
+  margin-top: 0.75em;
+  background: var(--tick, var(--ink));
 }
 
 /* ───────────────────────── Layout ───────────────────────── */

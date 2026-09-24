@@ -49,6 +49,14 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
       ruhige Set-Zeilen, Anmerkungs-Motiv (Signatur) auf der Startseite, neue Seite
       „Über uns“ (`/ueber-uns`, ersetzt /manufaktur) mit Wappen, Gründerin, Hunden, Allgäu,
       Namen, Standards; Textabgleich mit Originalseite
+- [x] Iteration 3 (Nutzerwünsche): altes Hero-Motiv als erster Eindruck (Navigation abgeschnitten,
+      Tippfehler „Hautberuhigt“ → „Haut“, „by REDI“ im Siegel entfernt), Button „Unsere Produkte“;
+      Wappen-Emblem im Header; mobiles Menü mit „Unsere Produkte“ zum Aufklappen; Hintergründe in
+      hellen Beige-Nuancen; Merkmale als Striche in Produktfarbe; „Passt dazu“ mit Bild;
+      Inhaltsstoffe farbig, NPS-Block eingefärbt, INCI-Liste aufklappbar; Anwendung als eigener
+      Bereich; Vergleich als „Welche Pflege passt?“-Fenster (wie eine Größentabelle)
+- [ ] Hero-Motiv ist Übergang: Etiketten zeigen weiter „für Körper & Haar“ und winzig „by REDI“;
+      vor Launch durch echtes Foto ersetzen
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
 ## Vorschau-Link

@@ -8,7 +8,8 @@ import { Gallery } from "@/components/Gallery";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
 import { TrackView } from "@/components/TrackView";
-import { Comparison } from "@/components/Comparison";
+import Image from "next/image";
+import { ComparisonDialog } from "@/components/ComparisonDialog";
 import { Accordion } from "@/components/Accordion";
 import { ProductCard } from "@/components/ProductCard";
 import styles from "./page.module.css";
@@ -71,8 +72,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <aside className={styles.buy} aria-label="Kaufen">
-          <h1 className="display-l">{p.name}</h1>
-          <p className={`body-l ${styles.for}`}>{p.forWhom}</p>
+          <div className={styles.title}>
+            <h1 className="display-l">{p.name}</h1>
+            <p className={`body-l ${styles.for}`}>{p.forWhom}</p>
+          </div>
 
           <div className={styles.priceBlock}>
             <p className={styles.price}>
@@ -97,7 +100,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <AddToCartButton items={[{ sku: v.sku, qty: 1 }]} productLabel={p.name} />
           </div>
 
-          <ul className={styles.highlights}>
+          <ul className={`ticks ${styles.highlights}`} style={{ "--tick": p.accent } as React.CSSProperties}>
             {p.highlights.map((h) => (
               <li key={h}>{h}</li>
             ))}
@@ -107,14 +110,27 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </li>
           </ul>
 
+          <ComparisonDialog current={p.slug} />
+
           {companion && (
             <div className={styles.companion}>
               <p className={styles.companionLabel}>Passt dazu</p>
               <Link href={`/${companion.slug}`} className={styles.companionLink}>
-                <span className={styles.companionName}>{companion.name}</span>
-                <span className="small muted">{companion.forWhom}</span>
+                <span className={styles.companionImage}>
+                  <Image
+                    src={companion.images[0].src}
+                    alt=""
+                    fill
+                    sizes="72px"
+                    style={{ objectPosition: companion.images[0].focus }}
+                  />
+                </span>
+                <span className={styles.companionText}>
+                  <span className={styles.companionName}>{companion.name}</span>
+                  <span className="small muted">{companion.forWhom}</span>
+                </span>
+                <span className="num small">{formatPrice(companion.variants[0].priceGross)}</span>
               </Link>
-              <span className="num small">{formatPrice(companion.variants[0].priceGross)}</span>
             </div>
           )}
         </aside>
@@ -140,8 +156,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* B · Wirkstoffe */}
-      <section className={`section ${styles.module} ${styles.tinted}`} aria-labelledby="wirkstoffe">
+      {/* B · Inhaltsstoffe: die wichtigsten farbig, Zertifikat hervorgehoben, Liste zum Aufklappen */}
+      <section
+        id="inhaltsstoffe"
+        className={`section ${styles.module} ${styles.ingredients}`}
+        style={{ "--accent": p.accent, "--accent-ink": `var(--accent-${p.slug}-ink)` } as React.CSSProperties}
+        aria-labelledby="wirkstoffe"
+      >
         <div className="container">
           <h2 id="wirkstoffe" className={`display-m ${styles.moduleTitle}`}>
             Die wichtigsten Inhaltsstoffe
@@ -150,92 +171,104 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             {p.keyIngredients.map((k) => (
               <li key={k.name}>
                 <p className={styles.keyName}>{k.name}</p>
-                <p className="muted">{k.benefit}.</p>
+                <p className={styles.keyText}>{k.benefit}.</p>
               </li>
             ))}
           </ul>
+
+          <div className={styles.ingredientsFoot}>
+            <div className={styles.cert}>
+              <p className={styles.certTitle}>
+                <svg className={styles.certSeal} viewBox="0 0 32 32" aria-hidden="true">
+                  <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M16 24V13M16 17c-3.5 0-5.5-2.2-5.5-5.5 3.5 0 5.5 2 5.5 5.5Zm0 2.5c3.5 0 5.5-2.2 5.5-5.5-3.5 0-5.5 2-5.5 5.5Z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                </svg>
+                {store.certification.short}
+              </p>
+              <p>
+                {store.certification.long}, kontrolliert durch die {store.certification.controlledBy}. Nur natürliche, nicht gentechnisch veränderte Rohstoffe.
+              </p>
+              <p className="small">Hergestellt in einer Naturkosmetik-Manufaktur im Allgäu. Verpackung FSC-zertifiziert.</p>
+            </div>
+
+            <div className={styles.inciWrap}>
+              <Accordion
+                items={[
+                  {
+                    title: `Alle Inhaltsstoffe (${p.inci.length})`,
+                    content: (
+                      <>
+                        <p className="small">Vollständig und in der Reihenfolge der Menge. * aus kontrolliert biologischem Anbau.</p>
+                        <table className={styles.inci}>
+                          <thead>
+                            <tr>
+                              <th scope="col">Bezeichnung (INCI)</th>
+                              <th scope="col">Was es ist</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {p.inci.map((x) => (
+                              <tr key={x.inci}>
+                                <td>
+                                  {x.inci}
+                                  {x.organic ? "*" : ""}
+                                </td>
+                                <td>{x.plain}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </>
+                    ),
+                  },
+                ]}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* C · Anwendung */}
-      <section className={`section ${styles.module}`} aria-labelledby="anwendung">
-        <div className={`container ${styles.split}`}>
-          <div>
-            <h2 id="anwendung" className="display-m">
-              Anwendung
-            </h2>
+      {/* C · Anwendung: eigener, geschlossener Bereich */}
+      <section
+        className={`section ${styles.module}`}
+        style={{ "--accent-ink": `var(--accent-${p.slug}-ink)` } as React.CSSProperties}
+        aria-labelledby="anwendung"
+      >
+        <div className="container">
+          <div className={styles.howto}>
+            <div className={styles.howtoHead}>
+              <h2 id="anwendung" className="display-m">
+                Anwendung
+              </h2>
+              <p className="muted">In drei Schritten.</p>
+            </div>
+            <ol className={styles.steps}>
+              {p.usage.map((u, i) => (
+                <li key={i}>
+                  <span className={styles.stepNum} aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <p>{u}</p>
+                </li>
+              ))}
+            </ol>
             <dl className={styles.facts}>
               <div>
-                <dt className="small muted">Duft</dt>
+                <dt>Duft</dt>
                 <dd>{p.scent}</dd>
               </div>
               <div>
-                <dt className="small muted">Anwendung</dt>
+                <dt>Wie oft</dt>
                 <dd>{p.frequency}</dd>
               </div>
               <div>
-                <dt className="small muted">Inhalt</dt>
+                <dt>Inhalt</dt>
                 <dd className="num">
                   {v.size.value} {v.size.unit}
                 </dd>
               </div>
             </dl>
           </div>
-          <ol className={styles.steps}>
-            {p.usage.map((u, i) => (
-              <li key={i}>
-                <span className={styles.stepNum}>{i + 1}</span>
-                <p>{u}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* D · Alle Inhaltsstoffe + E · Zertifikat */}
-      <section id="inhaltsstoffe" className={`section ${styles.module}`} aria-labelledby="inci">
-        <div className={`container ${styles.split}`}>
-          <div>
-            <h2 id="inci" className="display-m">
-              Alle Inhaltsstoffe
-            </h2>
-            <p className="muted" style={{ marginTop: "var(--s-4)" }}>
-              Vollständig und in der Reihenfolge der Menge. * aus kontrolliert biologischem Anbau.
-            </p>
-            <p className={`small ${styles.certNote}`}>
-              <strong>{store.certification.short}:</strong> {store.certification.long}, kontrolliert durch die {store.certification.controlledBy}. Hergestellt in einer
-              Naturkosmetik-Manufaktur im Allgäu, Verpackung FSC-zertifiziert.
-            </p>
-          </div>
-          <table className={styles.inci}>
-            <thead>
-              <tr>
-                <th scope="col">Bezeichnung (INCI)</th>
-                <th scope="col">Was es ist</th>
-              </tr>
-            </thead>
-            <tbody>
-              {p.inci.map((x) => (
-                <tr key={x.inci}>
-                  <td>
-                    {x.inci}
-                    {x.organic ? "*" : ""}
-                  </td>
-                  <td>{x.plain}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* Vergleich */}
-      <section className={`section ${styles.module}`} aria-labelledby="vergleich">
-        <div className="container">
-          <h2 id="vergleich" className={`display-m ${styles.moduleTitle}`}>
-            Im Vergleich
-          </h2>
-          <Comparison current={p.slug} />
         </div>
       </section>
 

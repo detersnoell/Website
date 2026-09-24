@@ -55,7 +55,7 @@ export function NeedsSelector() {
         <div className={styles.content} key={`c-${p.slug}`}>
           <h3 className="display-m">{p.name}</h3>
           <p className="body-l">{p.lead}</p>
-          <ul className={styles.list}>
+          <ul className={`ticks ${styles.list}`} style={{ "--tick": p.accent } as React.CSSProperties}>
             {p.highlights.map((h) => (
               <li key={h}>{h}</li>
             ))}
