@@ -1,6 +1,39 @@
 # Projektstatus — Website-Redesign
 
-Letztes Update: 2026-09-24
+Letztes Update: 2026-09-24 (v3 — echte Produktbilder eingebaut)
+
+## Aktueller Stand in Kürze
+
+Live-Vorschau: https://claude.ai/artifact/RSnGjJwHZgxYybHbGiuiNY (privat,
+nur für den Konto-Inhaber; Freigabe nur über das Share-Menü der Seite selbst).
+Quellcode: `previews/maybrooks-v2.html`. Bilder: `previews/assets/maybrooks/`.
+
+**Echte Bilder bereits eingebaut** (als Artifact-Assets hochgeladen, im
+`products`-Array per `src`-Feld referenziert):
+- Warmduscher (Fellshampoo) — 1 Ansicht
+- Raufbold (Fellshampoo) — 1 Ansicht, zusätzlich als Hero-Bild im Einsatz
+- Hasenfüßin (Pfotenbalsam) — 4 Ansichten (ein vom Nutzer geliefertes
+  Sammelbild wurde per Pillow in 4 Einzelbilder zerlegt: Verpackung,
+  geschlossen, geöffnet/Textur, Etikett-Detail)
+
+**Bekannter Mangel:** Ein geliefertes Bild ("Oat Shampoo", Datei
+`oat-shampoo-MISMATCH-englisch.jpg`) passt nicht ins Set — englischer
+statt deutscher Label-Text, andere Flaschenkappen-Form als die anderen
+zwei Shampoos. Wurde NICHT eingebaut, liegt aber im Repo für den Fall,
+dass der Nutzer es trotzdem nutzen möchte. Produktkarte 4 ("Glanzstück")
+ist weiterhin nur Platzhalter.
+
+**Offen:** Drei Hundefotos (zwei Vizslas in Dünen, Frau mit
+Australian-Shepherd-Mix auf einer Bank, drei Vizsla-Welpen) wurden vom
+Nutzer im Chat gezeigt, kamen aber OHNE zugreifbaren Dateipfad an (anders
+als die Produktbilder) — konnten deshalb technisch nicht als Datei
+gespeichert/hochgeladen werden. Nutzer wurde gebeten, sie erneut zu
+schicken. Sobald vorhanden: Frau-mit-Hund-Foto → „Über uns"-Sektion
+(dafür ist bereits ein Foto-Platzhalter vorgesehen), die beiden anderen
+Fotos → ergänzende Familien-/Rudel-Galerie in derselben Sektion.
+
+---
+
 
 ## Zielobjekt
 
