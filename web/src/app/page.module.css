@@ -108,61 +108,135 @@
   }
 }
 
-/* ───── Inhaltsstoffe als Zeilen ───── */
-.rows {
+/* ───── Was drin ist: Anmerkungen am Produkt ───── */
+.annotHead {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 44rem;
+  margin-bottom: clamp(40px, 2rem + 3vw, 88px);
+}
+
+.annot {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 17rem) minmax(0, 17rem) 1fr;
+  gap: var(--gutter);
+  align-items: center;
+}
+
+.annotImage {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  background: var(--studio);
+  overflow: hidden;
+}
+
+.annotImage img {
+  object-fit: cover;
+}
+
+.annotLabel {
+  position: absolute;
+  left: var(--s-4);
+  bottom: var(--s-3);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 2px var(--s-2);
+}
+
+.notes {
+  display: grid;
+  gap: var(--s-7);
+}
+
+.notes li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  line-height: 1.25;
+}
+
+/* feine Führungslinie Richtung Produkt */
+.notes li::after,
+.notes li::before {
+  flex: 0 0 clamp(24px, 4vw, 64px);
+  height: 1px;
+  background: var(--ink);
+}
+
+.notesLeft li {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.notesLeft li::after {
+  content: "";
+}
+
+.notesRight li::before {
+  content: "";
+}
+
+.annotFoot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4) var(--gutter);
+  margin-top: clamp(40px, 2rem + 3vw, 88px);
+  padding-top: var(--s-5);
   border-top: 1px solid var(--line-strong);
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  grid-template-areas:
-    "product main"
-    "product text";
-  gap: var(--s-1) var(--s-5);
-  padding-block: var(--s-5);
-  border-bottom: 1px solid var(--line);
-}
-
-.rowProduct {
-  grid-area: product;
-  font-size: var(--fs-small);
-  color: var(--ink-2);
-  padding-top: 0.5em;
-}
-
-.rowMain {
-  grid-area: main;
-  font-family: var(--font-display);
-  font-size: var(--fs-display-m);
-  line-height: 1.15;
-}
-
-.rowText {
-  grid-area: text;
-  color: var(--ink-2);
-}
-
-.cert {
-  grid-column: 2;
-  display: grid;
-  gap: var(--s-2);
-  max-width: 60ch;
+@media (max-width: 1099px) {
+  .notes li {
+    font-size: 1.125rem;
+  }
 }
 
 @media (max-width: 899px) {
-  .cert {
-    grid-column: auto;
+  .annot {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "imgA imgB"
+      "left right";
+    align-items: start;
+    row-gap: var(--s-5);
   }
-}
-
-@media (max-width: 479px) {
-  .row {
+  .annot > :nth-child(1) {
+    grid-area: left;
+  }
+  .annot > :nth-child(2) {
+    grid-area: imgA;
+  }
+  .annot > :nth-child(3) {
+    grid-area: imgB;
+  }
+  .annot > :nth-child(4) {
+    grid-area: right;
+  }
+  .notes {
+    gap: var(--s-3);
+  }
+  .notesLeft li {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+  .notes li::after,
+  .notes li::before {
+    flex-basis: 16px;
+    align-self: center;
+  }
+  .notes li {
+    align-items: baseline;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+  .annotFoot {
     grid-template-columns: 1fr;
-    grid-template-areas: "product" "main" "text";
-  }
-  .rowProduct {
-    padding-top: 0;
   }
 }
 
@@ -206,53 +280,41 @@
   }
 }
 
-/* ───── Sets als Zeilen ───── */
+/* ───── Sets als ruhige Zeilen ───── */
 .sets {
   border-top: 1px solid var(--line-strong);
 }
 
 .set {
   display: grid;
-  grid-template-columns: 216px 1fr auto 220px;
-  gap: var(--s-6);
+  grid-template-columns: 1fr auto 240px;
+  gap: var(--s-4) var(--s-7);
   align-items: center;
-  padding-block: var(--s-5);
+  padding-block: var(--s-6);
   border-bottom: 1px solid var(--line);
-}
-
-.setImages {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 2px;
-  height: 88px;
-}
-
-.setImage {
-  position: relative;
-  background: var(--studio);
-  overflow: hidden;
-}
-
-.setImage img {
-  object-fit: cover;
 }
 
 .setText {
   display: grid;
   gap: var(--s-1);
-  max-width: 52ch;
+  max-width: 60ch;
 }
 
 .setName {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--fs-title);
+  font-size: var(--fs-display-m);
+  line-height: 1.15;
+}
+
+.setItems {
+  font-weight: 500;
 }
 
 .setPrice {
   display: grid;
   justify-items: end;
+  font-size: var(--fs-body-l);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
@@ -263,25 +325,18 @@
   color: var(--success);
 }
 
-@media (max-width: 1099px) {
-  .set {
-    grid-template-columns: 160px 1fr auto;
-  }
-  .setAction {
-    grid-column: 2 / -1;
-  }
-}
-
-@media (max-width: 599px) {
+@media (max-width: 767px) {
   .set {
     grid-template-columns: 1fr auto;
-    gap: var(--s-4);
   }
-  .setImages {
+  .setText {
     grid-column: 1 / -1;
-    height: 120px;
+  }
+  .setPrice {
+    grid-column: 1;
+    justify-items: start;
   }
   .setAction {
-    grid-column: 1 / -1;
+    grid-column: 2;
   }
 }

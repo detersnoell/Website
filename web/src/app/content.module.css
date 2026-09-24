@@ -102,7 +102,12 @@
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: var(--s-6) var(--gutter);
-  align-items: center;
+  align-items: start;
+}
+
+.contact .contactImage {
+  position: sticky;
+  top: calc(var(--header-h) + var(--s-5));
 }
 
 .contactImage {
@@ -127,4 +132,36 @@
   .contact .prose {
     padding-left: 0;
   }
+  .contact .contactImage {
+    position: relative;
+    top: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.heroCompact {
+  display: grid;
+  gap: var(--s-5);
+  padding-block: clamp(32px, 1rem + 3vw, 72px) clamp(32px, 1rem + 2vw, 56px);
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--s-6);
+}
+
+.jump a {
+  display: inline-block;
+  padding-block: 10px;
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  transition: color var(--dur-s) var(--ease-out);
+}
+
+.jump a:hover {
+  color: var(--ink);
 }

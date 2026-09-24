@@ -22,7 +22,7 @@ export const products: Record<ProductSlug, Product> = {
     kind: "Shampoo",
     forWhom: "Shampoo für empfindliche und allergieanfällige Haut",
     need: "Empfindliche Haut",
-    lead: "Reinigt Fell und Haut besonders sanft und beruhigt gereizte Hautstellen. Mit Lavendelöl, Arnika und Ringelblume, seifen- und schaumfrei.",
+    lead: "Reinigt Fell und Haut sanft und beruhigt gereizte Hautstellen. Mit Lavendelöl, Arnika und Ringelblume, seifen- und schaumfrei.",
     notFor: {
       text: "dein Hund robustes Fell hat und es vor allem um Glanz und Kämmbarkeit geht. Dafür ist Raufbold gemacht.",
       alternative: "raufbold",
@@ -232,7 +232,7 @@ export const bundles: Bundle[] = [
   {
     slug: "duo-warmduscher",
     name: "Duo Sensibel",
-    description: "Warmduscher und Hasenfüßin: die Pflege für empfindliche Hunde, von Kopf bis Pfote.",
+    description: "Die Pflege für empfindliche Hunde, vom Fell bis zur Pfote.",
     items: [
       { slug: "warmduscher", qty: 1 },
       { slug: "hasenfuessin", qty: 1 },
@@ -241,7 +241,7 @@ export const bundles: Bundle[] = [
   {
     slug: "duo-raufbold",
     name: "Duo Robust",
-    description: "Raufbold und Hasenfüßin: Glanz fürs Fell, Pflege für die Pfoten.",
+    description: "Glanz fürs Fell, Pflege für die Pfoten.",
     items: [
       { slug: "raufbold", qty: 1 },
       { slug: "hasenfuessin", qty: 1 },
@@ -250,7 +250,7 @@ export const bundles: Bundle[] = [
   {
     slug: "alle-drei",
     name: "Alle drei",
-    description: "Beide Shampoos und die Hasenfüßin, ideal für mehrere Hunde oder zum Kennenlernen. Versandkostenfrei.",
+    description: "Für mehrere Hunde oder zum Kennenlernen.",
     items: [
       { slug: "warmduscher", qty: 1 },
       { slug: "raufbold", qty: 1 },

@@ -144,7 +144,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <section className={`section ${styles.module} ${styles.tinted}`} aria-labelledby="wirkstoffe">
         <div className="container">
           <h2 id="wirkstoffe" className={`display-m ${styles.moduleTitle}`}>
-            Was es besonders macht
+            Die wichtigsten Inhaltsstoffe
           </h2>
           <ul className={styles.keys}>
             {p.keyIngredients.map((k) => (

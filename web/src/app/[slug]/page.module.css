@@ -253,9 +253,14 @@
   .top {
     grid-template-columns: 1fr 1fr;
   }
+  .keys {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
 }
 
-@media (max-width: 899px) {
+/* Tablet (768–1099): zweispaltig. Einspaltig erst auf dem Smartphone. */
+@media (max-width: 767px) {
   .top {
     grid-template-columns: 1fr;
     padding-top: 0;

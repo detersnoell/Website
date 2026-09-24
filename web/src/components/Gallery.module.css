@@ -31,7 +31,7 @@
 }
 
 /* ───── Mobile-Swipe ───── */
-@media (max-width: 899px) {
+@media (max-width: 767px) {
   .stack {
     display: none;
   }
@@ -162,7 +162,7 @@
   right: var(--s-4);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 767px) {
   .stage {
     margin: 0 0 var(--s-8);
   }

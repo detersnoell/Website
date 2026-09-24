@@ -16,6 +16,12 @@ const proofs = [
   { title: "Von einer Züchterin", text: "Entwickelt aus 35 Jahren Erfahrung mit Hunden." },
 ];
 
+/* Anmerkungen am Produkt – Signatur, angelehnt an die ursprüngliche Seite */
+const annotations = {
+  warmduscher: ["Mit Lavendelöl", "Für empfindliche und allergieanfällige Haut", "Beruhigt gereizte Hautstellen"],
+  raufbold: ["Mit Bio-Arganöl", "Für Glanz und geschmeidiges Fell", "Leichter zu kämmen"],
+};
+
 const faq = [
   {
     title: "Warum schäumen die Shampoos nicht?",
@@ -83,33 +89,58 @@ export default function Home() {
       </section>
 
       <section className={`section ${styles.tinted}`} aria-labelledby="inhalt-title">
-        <div className={`container ${styles.split}`}>
-          <div className={styles.splitHead}>
+        <div className="container">
+          <div className={styles.annotHead}>
             <h2 id="inhalt-title" className="display-l">
-              Was in unseren Produkten steckt.
+              Was drin ist.
             </h2>
-            <p className="body-l muted">
-              Jeder Inhaltsstoff steht offen auf der Produktseite, übersetzt in verständliche Sprache. Ohne Seife, synthetische Duftstoffe, Silikone, Erdöl und
-              Gentechnik, ohne Tierversuche.
-            </p>
+            <p className="body-l muted">Inhaltsstoffe, für die man keinen Übersetzer braucht. Jeder einzelne steht offen auf der Produktseite.</p>
           </div>
-          <ul className={styles.rows}>
-            {allProducts.map((p) => (
-              <li key={p.slug}>
-                <Link href={`/${p.slug}#inhaltsstoffe`} className={styles.row}>
-                  <span className={styles.rowProduct}>{p.name}</span>
-                  <span className={styles.rowMain}>{p.keyIngredients[0].name}</span>
-                  <span className={styles.rowText}>{p.keyIngredients[0].benefit}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className={styles.cert}>
-            <p className={styles.proofTitle}>Zertifiziert natürlich</p>
+
+          <div className={styles.annot}>
+            <ul className={`${styles.notes} ${styles.notesLeft}`} aria-label="Warmduscher">
+              {annotations.warmduscher.map((n) => (
+                <li key={n}>{n}</li>
+              ))}
+            </ul>
+            <Link href="/warmduscher#inhaltsstoffe" className={styles.annotImage}>
+              <Image
+                src={products.warmduscher.images[0].src}
+                alt="Warmduscher"
+                fill
+                sizes="(max-width: 767px) 50vw, 22vw"
+                style={{ objectPosition: products.warmduscher.images[0].focus }}
+              />
+              <span className={styles.annotLabel}>Warmduscher</span>
+            </Link>
+            <Link href="/raufbold#inhaltsstoffe" className={styles.annotImage}>
+              <Image
+                src={products.raufbold.images[0].src}
+                alt="Raufbold"
+                fill
+                sizes="(max-width: 767px) 50vw, 22vw"
+                style={{ objectPosition: products.raufbold.images[0].focus }}
+              />
+              <span className={styles.annotLabel}>Raufbold</span>
+            </Link>
+            <ul className={`${styles.notes} ${styles.notesRight}`} aria-label="Raufbold">
+              {annotations.raufbold.map((n) => (
+                <li key={n}>{n}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.annotFoot}>
+            <p>
+              Beide Shampoos sind seifen- und schaumfrei und auf die Hundehaut abgestimmt. Die{" "}
+              <Link href="/hasenfuessin#inhaltsstoffe" className="link">
+                Hasenfüßin
+              </Link>{" "}
+              pflegt mit Mandel- und Jojobaöl, Propolis und Carnaubawachs.
+            </p>
             <p className="muted">
-              Alle Produkte tragen den Natural Product Standard, approved by BDIH: nur natürliche, nicht gentechnisch veränderte Rohstoffe, naturidentische
-              Konservierung, laufend kontrolliert durch die IONC GmbH.{" "}
-              <Link href="/manufaktur#standards" className="link">
+              Alle Produkte sind nach dem Natural Product Standard, approved by BDIH, zertifiziert und werden laufend von der IONC GmbH kontrolliert.{" "}
+              <Link href="/ueber-uns#standards" className="link">
                 Unsere Standards
               </Link>
             </p>
@@ -131,8 +162,8 @@ export default function Home() {
               Stressfaktor, für Tiere und für ihre Besitzer.“
             </blockquote>
             <p className="muted">Daniela Köchling, Züchterin, Hundetrainerin und Gründerin von Maybrooks</p>
-            <Link href="/manufaktur" className="link">
-              Die Manufaktur kennenlernen
+            <Link href="/ueber-uns" className="link">
+              Unsere Geschichte
             </Link>
           </div>
         </div>
@@ -148,21 +179,9 @@ export default function Home() {
               const price = bundlePrice(b);
               return (
                 <li key={b.slug} className={styles.set}>
-                  <div className={styles.setImages}>
-                    {b.items.map((it) => (
-                      <span key={it.slug} className={styles.setImage}>
-                        <Image
-                          src={products[it.slug].images[0].src}
-                          alt=""
-                          fill
-                          sizes="120px"
-                          style={{ objectPosition: products[it.slug].images[0].focus }}
-                        />
-                      </span>
-                    ))}
-                  </div>
                   <div className={styles.setText}>
                     <h3 className={styles.setName}>{b.name}</h3>
+                    <p className={styles.setItems}>{b.items.map((it) => products[it.slug].name).join(" und ")}</p>
                     <p className="muted">{b.description}</p>
                   </div>
                   <p className={styles.setPrice}>

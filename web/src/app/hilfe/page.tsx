@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Accordion } from "@/components/Accordion";
 import { ContactForm } from "@/components/ContactForm";
@@ -7,7 +8,7 @@ import { store } from "@/lib/store";
 import s from "../content.module.css";
 
 export const metadata: Metadata = {
-  title: "Hilfe & Kontakt",
+  title: "Hilfe und Kontakt",
   description: "Häufige Fragen, Versand, Rückgabe und Kontakt zu Maybrooks.",
 };
 
@@ -22,10 +23,43 @@ const fragen = [
 export default function Hilfe() {
   return (
     <>
-      <header className={`container ${s.hero}`}>
-        <h1 className="display-xl">Wie können wir helfen?</h1>
+      <header className={`container ${s.heroCompact}`}>
+        <h1 className="display-l">Hilfe und Kontakt</h1>
+        <nav aria-label="Auf dieser Seite" className={s.jump}>
+          <a href="#kontakt">Kontakt</a>
+          <a href="#fragen">Häufige Fragen</a>
+          <a href="#versand">Versand</a>
+          <a href="#rueckgabe">Rückgabe</a>
+        </nav>
       </header>
 
+      <section id="kontakt" className={`section ${s.tinted}`}>
+        <div className={`container ${s.contact}`}>
+          <div className={s.contactImage}>
+            <Image
+              priority
+              src="/images/brand/gruenderin-mit-hund.jpg"
+              alt="Daniela Köchling, Gründerin von Maybrooks, mit ihrem Hund"
+              fill
+              sizes="(max-width: 899px) 100vw, 40vw"
+            />
+          </div>
+          <div className={s.prose}>
+            <h2 className="display-m">Schreib uns</h2>
+            <p className="body-l">
+              Hinter Maybrooks steht Daniela Köchling, Züchterin, Hundetrainerin und Gründerin. Bei Fragen zu einer Bestellung, zur Pflege deines Hundes oder
+              zu unseren Produkten sind wir für dich da.
+            </p>
+            <p className="body-l">
+              <a className="link" href={`mailto:${store.contact.email}`}>
+                {store.contact.email}
+              </a>
+            </p>
+            <p className="muted">Händler und Hundefriseure erreichen uns über dasselbe Formular, Thema „Händleranfrage“.</p>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
       <section id="fragen" className="section">
         <div className={`container ${s.split}`}>
           <h2 className="display-m">Häufige Fragen</h2>
@@ -64,38 +98,16 @@ export default function Hilfe() {
           <div className={s.prose}>
             {/* TODO(Betreiber): Rückgabebedingungen für geöffnete Produkte */}
             <p className="muted">
-              Du hast ein gesetzliches Widerrufsrecht von 14 Tagen. Alle Einzelheiten stehen in der <a className="link" href="/widerruf">Widerrufsbelehrung</a>.
+              Du hast ein gesetzliches Widerrufsrecht von 14 Tagen. Alle Einzelheiten stehen in der{" "}
+              <Link className="link" href="/widerruf">
+                Widerrufsbelehrung
+              </Link>
+              .
             </p>
           </div>
         </div>
       </section>
 
-      <section id="kontakt" className={`section ${s.tinted}`}>
-        <div className={`container ${s.contact}`}>
-          <div className={s.contactImage}>
-            <Image
-              src="/images/brand/gruenderin-mit-hund.jpg"
-              alt="Daniela Köchling, Gründerin von Maybrooks, mit ihrem Hund"
-              fill
-              sizes="(max-width: 899px) 100vw, 40vw"
-            />
-          </div>
-          <div className={s.prose}>
-            <h2 className="display-l">Kontakt</h2>
-            <p className="body-l">
-              Hinter Maybrooks steht Daniela Köchling, Züchterin, Hundetrainerin und Gründerin. Bei Fragen zu einer Bestellung, zur Pflege deines Hundes oder
-              zu unseren Produkten sind wir für dich da.
-            </p>
-            <p className="body-l">
-              <a className="link" href={`mailto:${store.contact.email}`}>
-                {store.contact.email}
-              </a>
-            </p>
-            <p className="muted">Händler und Hundefriseure erreichen uns über dasselbe Formular, Thema „Händleranfrage“.</p>
-            <ContactForm />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

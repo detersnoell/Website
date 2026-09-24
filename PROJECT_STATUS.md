@@ -45,7 +45,10 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
       (+ API mit E-Mail-Adapter), Produktvergleich, Analytics-Ereignisse (GA4-Schema, ohne
       Versand), Sitemap/robots, Tastatur-/Fokus-Handling
 - [x] Test & Audit: `concept/audit-v1.md`
-- [ ] Nächste Iteration: siehe Audit (Vorschlag an Nutzer)
+- [x] Iteration 2: Tablet zweispaltig (Produktseite, Kasse), Hilfe mit Kontakt/Gründerin zuerst,
+      ruhige Set-Zeilen, Anmerkungs-Motiv (Signatur) auf der Startseite, neue Seite
+      „Über uns“ (`/ueber-uns`, ersetzt /manufaktur) mit Wappen, Gründerin, Hunden, Allgäu,
+      Namen, Standards; Textabgleich mit Originalseite
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
 ## Technischer Hinweis (Cloud-Umgebung)

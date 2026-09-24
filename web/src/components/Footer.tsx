@@ -29,7 +29,7 @@ export function Footer() {
         <nav aria-label="Service" className={styles.col}>
           <ul>
             <li>
-              <Link href="/manufaktur">Manufaktur</Link>
+              <Link href="/ueber-uns">Über uns</Link>
             </li>
             <li>
               <Link href="/hilfe">Hilfe und Kontakt</Link>

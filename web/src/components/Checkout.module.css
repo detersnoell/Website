@@ -208,7 +208,7 @@
   color: var(--ink-2);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 767px) {
   .wrap {
     grid-template-columns: 1fr;
     gap: var(--s-5);

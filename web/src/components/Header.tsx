@@ -143,8 +143,8 @@ export function Header() {
                 </div>
               </div>
             </div>
-            <Link href="/manufaktur" className={styles.navLink} aria-current={pathname === "/manufaktur" ? "page" : undefined}>
-              Manufaktur
+            <Link href="/ueber-uns" className={styles.navLink} aria-current={pathname === "/ueber-uns" ? "page" : undefined}>
+              Über uns
             </Link>
             <Link href="/hilfe" className={styles.navLink} aria-current={pathname === "/hilfe" ? "page" : undefined}>
               Hilfe
@@ -187,7 +187,7 @@ export function Header() {
               <Link href="/#sets">Sets</Link>
             </li>
             <li>
-              <Link href="/manufaktur">Manufaktur</Link>
+              <Link href="/ueber-uns">Über uns</Link>
             </li>
             <li>
               <Link href="/hilfe">Hilfe &amp; Kontakt</Link>
