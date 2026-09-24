@@ -21,14 +21,15 @@ Gesetzt ist nur:
 RESEARCH → DISCUSSION → CONCEPT → DESIGN → IMPLEMENTATION → TESTING → ITERATION.
 Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
 
-## Aktueller Stand: Research-Phase
+## Aktueller Stand: Konzept-Phase (wartet auf Entscheidungen)
 
 - [x] **A — Bestandsaufnahme maybrooks.de:** `research/A-bestandsaufnahme-maybrooks.md`
-- [ ] **B — Referenz-Websites des Nutzers:** URLs stehen noch aus
-- [ ] **C — Wettbewerber:** URLs stehen noch aus
-- [ ] **D — Internationale E-Commerce-Referenzen:** optional, URLs stehen noch aus
-- [ ] **Synthese:** Must/Should/Don't, Designprinzipien, Customer Journey,
-      Produktstrategie inkl. strategischer Entscheidungsfragen
+- [x] **B/C — Referenzen & Wettbewerb** (Cloud7 als Nutzer-Referenz + Dr Lisa,
+      4-Legger, Fable, Wild One, maxbone, Pets Deli): `research/B-C-referenzen-und-wettbewerb.md`
+- [x] **Konzept-Blaupause v1:** `concept/blaupause-v1.md` +
+      `concept/07-technik-und-integrationen.md`
+- [ ] **Offene Entscheidungen** (Kap. 10 der Blaupause) mit dem Nutzer klären
+- [ ] Danach: Prototyp / Implementierung
 
 ## Technischer Hinweis (Cloud-Umgebung)
 
