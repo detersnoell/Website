@@ -67,7 +67,7 @@ export function CartDrawer() {
         {cart.itemCount === 0 ? (
           <div className={styles.empty}>
             <p className="body-l">Dein Warenkorb ist leer.</p>
-            <ButtonLink href="/#produkte" variant="secondary" arrow>
+            <ButtonLink href="/#produkte" variant="secondary">
               Zu den Produkten
             </ButtonLink>
           </div>
@@ -80,9 +80,7 @@ export function CartDrawer() {
                     Noch <strong className="num">{formatPrice(remaining)}</strong> bis zum kostenlosen Versand
                   </>
                 ) : (
-                  <span className={styles.free}>
-                    <Icon name="check" size={16} /> Versandkostenfrei
-                  </span>
+                  <span className={styles.free}>Dein Versand ist kostenlos.</span>
                 )}
               </p>
               <div className={styles.track} aria-hidden="true">
@@ -125,7 +123,7 @@ export function CartDrawer() {
 
             {recommendBalm && (
               <div className={styles.reco}>
-                <p className="label muted">Passt dazu</p>
+                <p className={styles.recoLabel}>Passt dazu</p>
                 <div className={styles.recoRow}>
                   <span className={styles.recoImage}>
                     <Image src={balm.images[0].src} alt="" fill sizes="56px" style={{ objectPosition: balm.images[0].focus }} />
@@ -140,15 +138,14 @@ export function CartDrawer() {
                     onClick={() => add([{ sku: balm.variants[0].sku, qty: 1 }], "drawer")}
                     aria-label={`${balm.name} für ${formatPrice(balm.variants[0].priceGross)} hinzufügen`}
                   >
-                    <Icon name="plus" size={18} />
-                    <span className="num small">{formatPrice(balm.variants[0].priceGross)}</span>
+                    Hinzufügen, <span className="num">{formatPrice(balm.variants[0].priceGross)}</span>
                   </button>
                 </div>
               </div>
             )}
             {recommendShampoo && (
               <div className={styles.reco}>
-                <p className="label muted">Passt dazu</p>
+                <p className={styles.recoLabel}>Passt dazu</p>
                 <p className="small">
                   Das passende Shampoo für deinen Hund:{" "}
                   <Link href="/#auswahl" className="link" onClick={closeDrawer}>
@@ -164,7 +161,7 @@ export function CartDrawer() {
                 <span className="num">{formatPrice(cart.subtotal)}</span>
               </div>
               <p className="small muted">Inkl. MwSt. Versandkosten werden im nächsten Schritt berechnet.</p>
-              <ButtonLink href="/kasse" full arrow>
+              <ButtonLink href="/kasse" full>
                 Zur Kasse
               </ButtonLink>
             </div>
@@ -175,7 +172,6 @@ export function CartDrawer() {
       <div className={styles.toast} data-open={!!toast} role="status" aria-live="polite">
         {toast && (
           <>
-            <Icon name="check" size={18} />
             <span>{toast.message}</span>
             <button
               type="button"
@@ -185,7 +181,7 @@ export function CartDrawer() {
                 openDrawer();
               }}
             >
-              Ansehen
+              Zum Warenkorb
             </button>
           </>
         )}

@@ -22,17 +22,16 @@
 }
 
 .spinner {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 1.5px solid currentColor;
-  border-right-color: transparent;
-  animation: spin 700ms linear infinite;
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  animation: load 900ms var(--ease-in-out) infinite alternate;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+@keyframes load {
+  from {
+    transform: scaleX(0.15);
   }
 }
 

@@ -3,14 +3,14 @@
 
 :root {
   /* Farbe */
-  --paper: #f5f2ec;
-  --paper-2: #ece7df;
-  --studio: #e7e4df;
+  --paper: #faf9f7;
+  --paper-2: #f2f0ec;
+  --studio: #efede9;
   --ink: #1c1b19;
   --ink-2: #5e5a53;
   --ink-3: #8a857c;
-  --line: rgba(28, 27, 25, 0.14);
-  --line-strong: rgba(28, 27, 25, 0.32);
+  --line: rgba(28, 27, 25, 0.1);
+  --line-strong: rgba(28, 27, 25, 0.3);
   --on-ink: #f5f2ec;
   --on-ink-2: rgba(245, 242, 236, 0.66);
   --accent-warmduscher: #6f6488;
@@ -51,7 +51,7 @@
   --measure: 640px;
 
   /* Form */
-  --radius-ui: 2px;
+  --radius-ui: 0;
   --shadow-float: 0 24px 64px rgba(28, 27, 25, 0.14);
   --header-h: 64px;
   --announce-h: 36px;
@@ -181,11 +181,9 @@ button {
 }
 
 .label {
-  font-size: var(--fs-label);
-  line-height: 1.3;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 500;
+  font-size: var(--fs-small);
+  line-height: 1.4;
+  color: var(--ink-2);
 }
 
 .body-l {
@@ -255,52 +253,17 @@ button {
 /* ───────────────────────── Textlink ───────────────────────── */
 
 .link {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  padding-bottom: 2px;
-  transition: background-size var(--dur-s) var(--ease-out);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  transition: text-decoration-color var(--dur-s) var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
-    animation: link-redraw 480ms var(--ease-out);
+    text-decoration-color: currentColor;
   }
-}
-
-@keyframes link-redraw {
-  0% {
-    background-size: 100% 1px;
-    background-position: 100% 100%;
-  }
-  45% {
-    background-size: 0% 1px;
-    background-position: 100% 100%;
-  }
-  50% {
-    background-size: 0% 1px;
-    background-position: 0 100%;
-  }
-  100% {
-    background-size: 100% 1px;
-    background-position: 0 100%;
-  }
-}
-
-/* ───────────────────────── Einblenden beim ersten Erscheinen ───────────────────────── */
-
-.js .reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity var(--dur-xl) var(--ease-out),
-    transform var(--dur-xl) var(--ease-out);
-}
-
-.js .reveal.is-visible {
-  opacity: 1;
-  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -314,8 +277,5 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 120ms !important;
     transition-property: opacity, color, background-color, border-color !important;
-  }
-  .js .reveal {
-    transform: none;
   }
 }

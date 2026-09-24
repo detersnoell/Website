@@ -1,32 +1,12 @@
-/* ───── 1 · Hero-Regal ───── */
+/* ───── Hero: Produkte ───── */
 .hero {
-  padding-block: clamp(32px, 1rem + 3vw, 64px) var(--s-8);
+  padding-block: clamp(28px, 1rem + 2.4vw, 56px) var(--s-9);
 }
 
-/* Kompakter Kopf: Headline links, Beweiszeile rechts unten – Produkte bleiben im ersten Screen */
-.heroHead {
-  display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: var(--s-4) var(--gutter);
-  align-items: end;
-  margin-bottom: clamp(24px, 1rem + 2vw, 48px);
-}
-
-.heroHead h1 {
-  font-size: clamp(2.5rem, 1.4rem + 3.2vw, 4.5rem);
-  max-width: 17ch;
-}
-
-.heroProof {
-  justify-self: end;
-  text-align: right;
-  max-width: 30ch;
-}
-
-@media (min-width: 1024px) {
-  .shelf {
-    --card-ratio: 1 / 1;
-  }
+.heroTitle {
+  font-size: clamp(2.5rem, 1.3rem + 3.2vw, 4.5rem);
+  max-width: 22ch;
+  margin-bottom: clamp(28px, 1rem + 2vw, 48px);
 }
 
 .shelf {
@@ -35,19 +15,17 @@
   gap: var(--gutter);
 }
 
-@media (max-width: 899px) {
-  .heroHead {
-    grid-template-columns: 1fr;
-  }
-  .heroProof {
-    justify-self: start;
-    text-align: left;
-    font-size: var(--fs-small);
+@media (min-width: 1024px) {
+  .shelf {
+    --card-ratio: 1 / 1;
   }
 }
 
 @media (max-width: 767px) {
-  /* Horizontales Snap-Karussell, nächste Karte ragt ins Bild */
+  .hero {
+    padding-bottom: var(--s-8);
+  }
+  /* Horizontales Snap-Karussell, die nächste Karte ragt ins Bild */
   .shelf {
     grid-template-columns: none;
     grid-auto-flow: column;
@@ -57,7 +35,6 @@
     scroll-padding-inline: var(--margin);
     margin-inline: calc(var(--margin) * -1);
     padding-inline: var(--margin);
-    padding-bottom: var(--s-2);
     scrollbar-width: none;
   }
   .shelf::-webkit-scrollbar {
@@ -68,163 +45,128 @@
   }
 }
 
-/* ───── 2 · Beweisleiste ───── */
+/* ───── Belege ───── */
 .proof {
-  border-block: 1px solid var(--line);
+  padding-bottom: var(--s-9);
 }
 
 .proofList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-}
-
-.proofList li {
-  padding: var(--s-5) var(--s-5) var(--s-5) 0;
-}
-
-.proofList li + li {
-  padding-left: var(--s-5);
-  border-left: 1px solid var(--line);
+  gap: var(--s-6) var(--gutter);
 }
 
 .proofTitle {
   font-family: var(--font-display);
   font-size: var(--fs-title);
   line-height: 1.25;
-  margin-bottom: 2px;
+  margin-bottom: var(--s-1);
+}
+
+.proofText {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  max-width: 28ch;
 }
 
 @media (max-width: 899px) {
   .proofList {
     grid-template-columns: 1fr 1fr;
   }
-  .proofList li:nth-child(3) {
-    padding-left: 0;
-    border-left: 0;
-  }
-  .proofList li:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
-  }
 }
 
-@media (max-width: 479px) {
-  .proofTitle {
-    font-size: 1.125rem;
-  }
-  .proofList li,
-  .proofList li + li {
-    padding: var(--s-4) var(--s-3) var(--s-4) 0;
-  }
-  .proofList li:nth-child(even) {
-    padding-left: var(--s-4);
-  }
+/* ───── Allgemein ───── */
+.sectionTitle {
+  max-width: 20ch;
+  margin-bottom: clamp(32px, 1.5rem + 2vw, 64px);
 }
 
-/* ───── Sektionskopf ───── */
-.sectionHead {
-  display: grid;
-  gap: var(--s-3);
-  max-width: 720px;
-  margin-bottom: var(--s-8);
-}
-
-@media (max-width: 767px) {
-  .sectionHead {
-    margin-bottom: var(--s-6);
-  }
-}
-
-/* ───── 4 · Inhaltsstoffe ───── */
-.ingredients {
+.tinted {
   background: var(--paper-2);
 }
 
-.ingredientGrid {
+.split {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gutter);
-}
-
-.ingredient {
-  display: grid;
-  gap: var(--s-3);
-  align-content: start;
-  padding-top: var(--s-5);
-  border-top: 2px solid var(--accent);
-}
-
-.ingredientProduct {
-  color: var(--accent);
-}
-
-.without {
-  margin-top: var(--s-9);
-  display: grid;
-  grid-template-columns: minmax(200px, 3fr) 9fr;
-  gap: var(--s-4) var(--gutter);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-}
-
-.without ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2) var(--s-6);
-}
-
-.without li {
-  font-family: var(--font-display);
-  font-size: var(--fs-title);
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-  text-decoration-color: var(--ink-3);
-}
-
-.cert {
-  margin-top: var(--s-8);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--s-6);
+  grid-template-columns: 5fr 7fr;
+  gap: var(--s-7) var(--gutter);
   align-items: start;
-  max-width: 820px;
 }
 
-.cert > div {
+.splitHead {
   display: grid;
-  gap: var(--s-3);
+  gap: var(--s-5);
   justify-items: start;
-}
-
-.certMark {
-  display: grid;
-  place-items: center;
-  width: 88px;
-  height: 88px;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  padding-right: var(--s-7);
 }
 
 @media (max-width: 899px) {
-  .ingredientGrid {
+  .split {
     grid-template-columns: 1fr;
-    gap: var(--s-6);
   }
-  .without {
-    grid-template-columns: 1fr;
-    margin-top: var(--s-8);
+  .splitHead {
+    padding-right: 0;
+  }
+}
+
+/* ───── Inhaltsstoffe als Zeilen ───── */
+.rows {
+  border-top: 1px solid var(--line-strong);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  grid-template-areas:
+    "product main"
+    "product text";
+  gap: var(--s-1) var(--s-5);
+  padding-block: var(--s-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.rowProduct {
+  grid-area: product;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  padding-top: 0.5em;
+}
+
+.rowMain {
+  grid-area: main;
+  font-family: var(--font-display);
+  font-size: var(--fs-display-m);
+  line-height: 1.15;
+}
+
+.rowText {
+  grid-area: text;
+  color: var(--ink-2);
+}
+
+.cert {
+  grid-column: 2;
+  display: grid;
+  gap: var(--s-2);
+  max-width: 60ch;
+}
+
+@media (max-width: 899px) {
+  .cert {
+    grid-column: auto;
   }
 }
 
 @media (max-width: 479px) {
-  .cert {
+  .row {
     grid-template-columns: 1fr;
+    grid-template-areas: "product" "main" "text";
+  }
+  .rowProduct {
+    padding-top: 0;
   }
 }
 
-/* ───── 5 · Gründerin ───── */
+/* ───── Gründerin ───── */
 .founder {
   display: grid;
   grid-template-columns: 5fr 7fr;
@@ -247,7 +189,7 @@
   display: grid;
   gap: var(--s-5);
   justify-items: start;
-  padding-left: clamp(0px, 4vw, 64px);
+  padding-left: clamp(0px, 5vw, 96px);
 }
 
 .founderText blockquote {
@@ -257,27 +199,25 @@
 @media (max-width: 899px) {
   .founder {
     grid-template-columns: 1fr;
+    gap: var(--s-6);
   }
   .founderText {
     padding-left: 0;
   }
 }
 
-/* ───── 7 · Sets ───── */
+/* ───── Sets als Zeilen ───── */
 .sets {
-  border-top: 1px solid var(--line);
-}
-
-.setGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gutter);
+  border-top: 1px solid var(--line-strong);
 }
 
 .set {
   display: grid;
-  gap: var(--s-3);
-  align-content: start;
+  grid-template-columns: 216px 1fr auto 220px;
+  gap: var(--s-6);
+  align-items: center;
+  padding-block: var(--s-5);
+  border-bottom: 1px solid var(--line);
 }
 
 .setImages {
@@ -285,18 +225,23 @@
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   gap: 2px;
-  aspect-ratio: 3 / 2;
-  background: var(--studio);
-  margin-bottom: var(--s-3);
+  height: 88px;
 }
 
 .setImage {
   position: relative;
+  background: var(--studio);
   overflow: hidden;
 }
 
 .setImage img {
   object-fit: cover;
+}
+
+.setText {
+  display: grid;
+  gap: var(--s-1);
+  max-width: 52ch;
 }
 
 .setName {
@@ -306,41 +251,37 @@
 }
 
 .setPrice {
-  display: flex;
-  align-items: baseline;
-  gap: var(--s-3);
+  display: grid;
+  justify-items: end;
   font-weight: 500;
-  margin-bottom: var(--s-2);
+  font-variant-numeric: tabular-nums;
 }
 
 .freeTag {
+  font-size: var(--fs-small);
+  font-weight: 400;
   color: var(--success);
-  font-weight: 500;
 }
 
-@media (max-width: 899px) {
-  .setGrid {
-    grid-template-columns: 1fr;
-    gap: var(--s-7);
+@media (max-width: 1099px) {
+  .set {
+    grid-template-columns: 160px 1fr auto;
+  }
+  .setAction {
+    grid-column: 2 / -1;
   }
 }
 
-/* ───── 8 · FAQ ───── */
-.faq {
-  display: grid;
-  grid-template-columns: 4fr 8fr;
-  gap: var(--s-6) var(--gutter);
-}
-
-.faq header {
-  display: grid;
-  gap: var(--s-3);
-  align-content: start;
-  justify-items: start;
-}
-
-@media (max-width: 899px) {
-  .faq {
-    grid-template-columns: 1fr;
+@media (max-width: 599px) {
+  .set {
+    grid-template-columns: 1fr auto;
+    gap: var(--s-4);
+  }
+  .setImages {
+    grid-column: 1 / -1;
+    height: 120px;
+  }
+  .setAction {
+    grid-column: 1 / -1;
   }
 }

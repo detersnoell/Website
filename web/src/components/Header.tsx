@@ -100,11 +100,11 @@ export function Header() {
                     </Link>
                   ))}
                   <div className={styles.panelAside}>
-                    <Link href="/#sets" className="link small">
-                      Sets &amp; Duos
-                    </Link>
                     <Link href="/#auswahl" className="link small">
                       Welche Pflege passt?
+                    </Link>
+                    <Link href="/#sets" className="link small">
+                      Sets
                     </Link>
                   </div>
                 </div>
@@ -119,19 +119,20 @@ export function Header() {
           </nav>
 
           <button type="button" className={styles.cartButton} onClick={openDrawer}>
-            <Icon name="bag" size={22} />
-            <span className={styles.cartLabel}>Warenkorb</span>
-            <span key={badgePulse} className={styles.badge} data-empty={!ready || cart.itemCount === 0}>
-              {cart.itemCount}
+            <span className={styles.cartIcon}>
+              <Icon name="bag" size={22} />
             </span>
-            <span className="visually-hidden">, {cart.itemCount} Artikel</span>
+            <span className={styles.cartLabel}>Warenkorb</span>
+            <span key={badgePulse} className={`num ${styles.count}`} data-empty={!ready || cart.itemCount === 0}>
+              {ready ? cart.itemCount : 0}
+            </span>
+            <span className="visually-hidden"> Artikel</span>
           </button>
         </div>
       </header>
 
       <div id="mobile-menu" className={styles.sheet} data-open={menuOpen} aria-hidden={!menuOpen} inert={!menuOpen}>
         <nav aria-label="Menü">
-          <p className={`label muted ${styles.sheetLabel}`}>Produkte</p>
           <ul className={styles.sheetProducts}>
             {allProducts.map((p) => (
               <li key={p.slug}>
@@ -150,7 +151,7 @@ export function Header() {
           </ul>
           <ul className={styles.sheetLinks}>
             <li>
-              <Link href="/#sets">Sets &amp; Duos</Link>
+              <Link href="/#sets">Sets</Link>
             </li>
             <li>
               <Link href="/manufaktur">Manufaktur</Link>

@@ -12,7 +12,6 @@ export default function Manufaktur() {
   return (
     <>
       <header className={`container ${s.hero}`}>
-        <p className="label muted">Manufaktur</p>
         <h1 className="display-xl">Aus Erfahrung mit empfindlichen Hunden.</h1>
         <p className={`body-l muted ${s.intro}`}>
           Maybrooks ist ein Familienbetrieb. Unsere Pflege entsteht in einer kleinen Naturkosmetik-Manufaktur im Allgäu, nach Standards, die eine unabhängige
@@ -22,11 +21,10 @@ export default function Manufaktur() {
 
       <section className="section">
         <div className={`container ${s.split}`}>
-          <div className={`${s.media} reveal`}>
+          <div className={s.media}>
             <Image src="/images/brand/gruenderin-mit-hund.jpg" alt="Daniela Köchling mit ihrem Hund" fill sizes="(max-width: 899px) 100vw, 40vw" />
           </div>
-          <div className={`${s.prose} reveal`}>
-            <p className="label muted">Die Gründerin</p>
+          <div className={s.prose}>
             <h2 className="display-m">Daniela Köchling, Züchterin und Hundetrainerin</h2>
             <p className="body-l">
               Seit 35 Jahren leben Hunde in Danielas Alltag, Hunde vieler Rassen. Viele von ihnen hatten Unverträglichkeiten und Allergien, die sich oft über die
@@ -42,8 +40,8 @@ export default function Manufaktur() {
 
       <section id="standards" className={`section ${s.tinted}`}>
         <div className={`container ${s.split}`}>
-          <h2 className="display-l reveal">Unsere Standards</h2>
-          <div className={`${s.prose} reveal`}>
+          <h2 className="display-l">Unsere Standards</h2>
+          <div className={s.prose}>
             <h3>Zertifiziert natürlich</h3>
             <p className="muted">
               Unsere Produkte sind nach dem Natural Product Standard (NPS), approved by BDIH, zertifiziert. Das Label zeichnet die Natürlichkeit von Produkten aus,
@@ -63,7 +61,7 @@ export default function Manufaktur() {
               Unsere Faltschachteln werden in Deutschland hergestellt und sind FSC-zertifiziert, also aus Papier aus verantwortungsvoller Forstwirtschaft.
             </p>
             <div style={{ marginTop: "var(--s-5)" }}>
-              <ButtonLink href="/#produkte" arrow>
+              <ButtonLink href="/#produkte">
                 Zu den Produkten
               </ButtonLink>
             </div>

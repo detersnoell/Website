@@ -7,7 +7,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Announcement } from "@/components/Announcement";
-import { RevealObserver } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.maybrooks.de"),
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f2ec",
+  themeColor: "#faf9f7",
   width: "device-width",
   initialScale: 1,
 };
@@ -29,10 +28,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <head>
-        {/* Bewegungsklassen nur mit JavaScript aktivieren (ohne JS bleibt alles sichtbar) */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
       <body>
         <CartProvider>
           <a href="#inhalt" className="skip-link">
@@ -43,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="inhalt">{children}</main>
           <Footer />
           <CartDrawer />
-          <RevealObserver />
         </CartProvider>
       </body>
     </html>

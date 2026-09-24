@@ -23,7 +23,7 @@ export function Checkout() {
     return (
       <div className={`container ${styles.empty}`}>
         <h1 className="display-l">Dein Warenkorb ist leer.</h1>
-        <ButtonLink href="/#produkte" arrow>
+        <ButtonLink href="/#produkte">
           Zu den Produkten
         </ButtonLink>
       </div>

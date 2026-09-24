@@ -10,10 +10,10 @@ import { AddToCartButton } from "@/components/AddToCartButton";
 import styles from "./page.module.css";
 
 const proofs = [
-  { title: "NPS-zertifiziert", text: "Natural Product Standard, approved by BDIH" },
-  { title: "Allgäuer Manufaktur", text: "Hergestellt in einer Naturkosmetik-Manufaktur" },
-  { title: "Seifen- & schaumfrei", text: "Mild und pH-angepasst an Hundehaut" },
-  { title: "Von einer Züchterin", text: "35 Jahre Erfahrung mit empfindlichen Hunden" },
+  { title: "NPS-zertifiziert", text: "Natural Product Standard, approved by BDIH." },
+  { title: "Aus dem Allgäu", text: "Hergestellt in einer Naturkosmetik-Manufaktur." },
+  { title: "Seifen- und schaumfrei", text: "Mild und auf Hundehaut abgestimmt." },
+  { title: "Von einer Züchterin", text: "Entwickelt aus 35 Jahren Erfahrung mit Hunden." },
 ];
 
 const faq = [
@@ -31,7 +31,7 @@ const faq = [
     title: "Welches Shampoo passt zu meinem Hund?",
     content: (
       <>
-        Bei empfindlicher, zu Reizungen neigender Haut der Warmduscher, bei robustem Fell mit Wunsch nach Glanz und Kämmbarkeit der Raufbold.{" "}
+        Bei empfindlicher, zu Reizungen neigender Haut der Warmduscher. Bei robustem Fell, wenn Glanz und Kämmbarkeit zählen, der Raufbold.{" "}
         <Link href="#auswahl" className="link">
           Zur Auswahlhilfe
         </Link>
@@ -48,110 +48,89 @@ const faq = [
 export default function Home() {
   return (
     <>
-      {/* 1 · Hero-Regal: die Produkte sind der Hero */}
+      {/* Die Produkte sind der Hero */}
       <section id="produkte" className={styles.hero} aria-labelledby="hero-title">
         <div className="container">
-          <div className={styles.heroHead}>
-            <h1 id="hero-title" className="display-xl">
-              Natürliche Pflege für Fell, Haut und&nbsp;Pfoten.
-            </h1>
-            <p className={`body-l muted ${styles.heroProof}`}>NPS-zertifiziert · Manufaktur im Allgäu · entwickelt von einer Züchterin</p>
-          </div>
+          <h1 id="hero-title" className={`display-xl ${styles.heroTitle}`}>
+            Natürliche Pflege für Fell, Haut und Pfoten.
+          </h1>
           <div className={styles.shelf}>
             {allProducts.map((p, i) => (
-              <ProductCard key={p.slug} product={p} priority={i === 0} index={i} entrance="load" />
+              <ProductCard key={p.slug} product={p} priority={i === 0} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* 2 · Beweisleiste */}
       <section aria-label="Warum Maybrooks" className={styles.proof}>
         <ul className={`container ${styles.proofList}`}>
           {proofs.map((p) => (
             <li key={p.title}>
               <p className={styles.proofTitle}>{p.title}</p>
-              <p className="small muted">{p.text}</p>
+              <p className={styles.proofText}>{p.text}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      {/* 3 · Auswahl nach Bedarf */}
       <section id="auswahl" className="section" aria-labelledby="auswahl-title">
         <div className="container">
-          <header className={`${styles.sectionHead} reveal`}>
-            <p className="label muted">Auswahlhilfe</p>
-            <h2 id="auswahl-title" className="display-l">
-              Welche Pflege braucht dein Hund?
-            </h2>
-          </header>
+          <h2 id="auswahl-title" className={`display-l ${styles.sectionTitle}`}>
+            Welche Pflege braucht dein Hund?
+          </h2>
           <NeedsSelector />
         </div>
       </section>
 
-      {/* 4 · Was drin ist */}
-      <section className={`section ${styles.ingredients}`} aria-labelledby="inhalt-title">
-        <div className="container">
-          <header className={`${styles.sectionHead} reveal`}>
-            <p className="label muted">Inhaltsstoffe</p>
+      <section className={`section ${styles.tinted}`} aria-labelledby="inhalt-title">
+        <div className={`container ${styles.split}`}>
+          <div className={styles.splitHead}>
             <h2 id="inhalt-title" className="display-l">
-              Was drin ist. Und was nicht.
+              Was in unseren Produkten steckt.
             </h2>
-            <p className="body-l muted">Jeder Inhaltsstoff steht offen auf der Produktseite, übersetzt in verständliche Sprache.</p>
-          </header>
-          <div className={styles.ingredientGrid}>
+            <p className="body-l muted">
+              Jeder Inhaltsstoff steht offen auf der Produktseite, übersetzt in verständliche Sprache. Ohne Seife, synthetische Duftstoffe, Silikone, Erdöl und
+              Gentechnik, ohne Tierversuche.
+            </p>
+          </div>
+          <ul className={styles.rows}>
             {allProducts.map((p) => (
-              <div key={p.slug} className={`${styles.ingredient} reveal`} style={{ "--accent": p.accent } as React.CSSProperties}>
-                <p className={`label ${styles.ingredientProduct}`}>{p.name}</p>
-                <p className="display-m">{p.keyIngredients[0].name}</p>
-                <p className="muted">{p.keyIngredients[0].benefit}.</p>
-                <Link href={`/${p.slug}#inhaltsstoffe`} className="link small">
-                  Alle Inhaltsstoffe
+              <li key={p.slug}>
+                <Link href={`/${p.slug}#inhaltsstoffe`} className={styles.row}>
+                  <span className={styles.rowProduct}>{p.name}</span>
+                  <span className={styles.rowMain}>{p.keyIngredients[0].name}</span>
+                  <span className={styles.rowText}>{p.keyIngredients[0].benefit}</span>
                 </Link>
-              </div>
+              </li>
             ))}
-          </div>
-          <div className={`${styles.without} reveal`}>
-            <p className="label muted">Nicht in unseren Produkten</p>
-            <ul>
-              {["Seife", "Synthetische Duftstoffe", "Silikone", "Erdöl & Derivate", "Gentechnik", "Tierversuche"].map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-          </div>
-          <div className={`${styles.cert} reveal`}>
-            <p className={styles.certMark}>NPS</p>
-            <div>
-              <p className={styles.proofTitle}>Zertifiziert natürlich</p>
-              <p className="muted">
-                Unsere Produkte tragen den Natural Product Standard, approved by BDIH. Nur natürliche, nicht gentechnisch veränderte Rohstoffe; Herstellung und
-                Konservierung nach strengen Kriterien, laufend kontrolliert durch die IONC GmbH.
-              </p>
-              <Link href="/manufaktur#standards" className="link small">
+          </ul>
+          <div className={styles.cert}>
+            <p className={styles.proofTitle}>Zertifiziert natürlich</p>
+            <p className="muted">
+              Alle Produkte tragen den Natural Product Standard, approved by BDIH: nur natürliche, nicht gentechnisch veränderte Rohstoffe, naturidentische
+              Konservierung, laufend kontrolliert durch die IONC GmbH.{" "}
+              <Link href="/manufaktur#standards" className="link">
                 Unsere Standards
               </Link>
-            </div>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 5 · Daniela */}
       <section className="section" aria-labelledby="daniela-title">
         <div className={`container ${styles.founder}`}>
-          <div className={`${styles.founderImage} reveal`}>
-            <Image src="/images/brand/gruenderin-mit-hund.jpg" alt="Daniela, Gründerin von Maybrooks, mit ihrem Hund" fill sizes="(max-width: 899px) 100vw, 42vw" />
+          <div className={styles.founderImage}>
+            <Image src="/images/brand/gruenderin-mit-hund.jpg" alt="Daniela Köchling, Gründerin von Maybrooks, mit ihrem Hund" fill sizes="(max-width: 899px) 100vw, 42vw" />
           </div>
-          <div className={`${styles.founderText} reveal`}>
-            <p className="label muted">Die Gründerin</p>
+          <div className={styles.founderText}>
             <h2 id="daniela-title" className="visually-hidden">
-              Daniela, Gründerin von Maybrooks
+              Die Gründerin
             </h2>
             <blockquote className="display-m">
               „Seit 35 Jahren habe ich Hunde in meinem Leben. Viele von ihnen haben Unverträglichkeiten und Allergien. Hautprobleme sind ein echter
               Stressfaktor, für Tiere und für ihre Besitzer.“
             </blockquote>
-            <p className="muted">Daniela Köchling · Züchterin, Hundetrainerin und Gründerin von Maybrooks</p>
+            <p className="muted">Daniela Köchling, Züchterin, Hundetrainerin und Gründerin von Maybrooks</p>
             <Link href="/manufaktur" className="link">
               Die Manufaktur kennenlernen
             </Link>
@@ -159,57 +138,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 · Sets */}
-      <section id="sets" className={`section ${styles.sets}`} aria-labelledby="sets-title">
+      <section id="sets" className={`section ${styles.tinted}`} aria-labelledby="sets-title">
         <div className="container">
-          <header className={`${styles.sectionHead} reveal`}>
-            <p className="label muted">Sets</p>
-            <h2 id="sets-title" className="display-l">
-              Shampoo wählen, Pfoten mitpflegen.
-            </h2>
-          </header>
-          <div className={styles.setGrid}>
+          <h2 id="sets-title" className={`display-l ${styles.sectionTitle}`}>
+            Sets
+          </h2>
+          <ul className={styles.sets}>
             {bundles.map((b) => {
               const price = bundlePrice(b);
               return (
-                <article key={b.slug} className={`${styles.set} reveal`}>
+                <li key={b.slug} className={styles.set}>
                   <div className={styles.setImages}>
                     {b.items.map((it) => (
                       <span key={it.slug} className={styles.setImage}>
-                        <Image src={products[it.slug].images[0].src} alt="" fill sizes="(max-width: 899px) 30vw, 12vw" style={{ objectPosition: products[it.slug].images[0].focus }} />
+                        <Image
+                          src={products[it.slug].images[0].src}
+                          alt=""
+                          fill
+                          sizes="120px"
+                          style={{ objectPosition: products[it.slug].images[0].focus }}
+                        />
                       </span>
                     ))}
                   </div>
-                  <h3 className={styles.setName}>{b.name}</h3>
-                  <p className="small muted">{b.description}</p>
+                  <div className={styles.setText}>
+                    <h3 className={styles.setName}>{b.name}</h3>
+                    <p className="muted">{b.description}</p>
+                  </div>
                   <p className={styles.setPrice}>
                     <span className="num">{formatPrice(price)}</span>
-                    {price >= store.freeShippingThreshold && <span className={`small ${styles.freeTag}`}>Versandkostenfrei</span>}
+                    {price >= store.freeShippingThreshold && <span className={styles.freeTag}>Versandkostenfrei</span>}
                   </p>
-                  <AddToCartButton
-                    items={b.items.map((it) => ({ sku: products[it.slug].variants[0].sku, qty: it.qty }))}
-                    label="Set in den Warenkorb"
-                    variant="secondary"
-                  />
-                </article>
+                  <div className={styles.setAction}>
+                    <AddToCartButton
+                      items={b.items.map((it) => ({ sku: products[it.slug].variants[0].sku, qty: it.qty }))}
+                      label="In den Warenkorb"
+                      variant="secondary"
+                    />
+                  </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* 8 · FAQ */}
       <section className="section" aria-labelledby="faq-title">
-        <div className={`container ${styles.faq}`}>
-          <header className="reveal">
-            <p className="label muted">Fragen</p>
+        <div className={`container ${styles.split}`}>
+          <div className={styles.splitHead}>
             <h2 id="faq-title" className="display-l">
-              Gut zu wissen.
+              Häufige Fragen
             </h2>
             <Link href="/hilfe" className="link">
-              Alle Fragen &amp; Kontakt
+              Alle Fragen und Kontakt
             </Link>
-          </header>
+          </div>
           <Accordion items={faq} />
         </div>
       </section>

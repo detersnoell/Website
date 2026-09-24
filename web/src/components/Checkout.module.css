@@ -191,7 +191,6 @@
   height: 22px;
   display: grid;
   place-items: center;
-  border-radius: 11px;
   background: var(--ink);
   color: var(--on-ink);
   font-size: 11px;

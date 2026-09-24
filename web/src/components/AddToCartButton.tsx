@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useCart } from "./CartProvider";
 import { buttonStyles } from "./Button";
-import { Icon } from "./Icon";
 import type { AddItem } from "@/lib/commerce/types";
 import styles from "./AddToCartButton.module.css";
 
@@ -47,14 +46,13 @@ export function AddToCartButton({
       >
         <span className={styles.layer} data-show={state === "idle" || state === "error"}>
           {label}
-          <Icon name="arrow" className={buttonStyles.arrow} />
         </span>
         <span className={styles.layer} data-show={state === "loading"} aria-hidden={state !== "loading"}>
           <span className={styles.spinner} />
           <span className="visually-hidden">Wird hinzugefügt</span>
         </span>
         <span className={styles.layer} data-show={state === "done"} aria-hidden={state !== "done"}>
-          <Icon name="check" /> Hinzugefügt
+          Hinzugefügt
         </span>
       </button>
       {state === "error" && (

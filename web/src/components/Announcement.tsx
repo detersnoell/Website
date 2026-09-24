@@ -10,11 +10,12 @@ export function Announcement() {
         placeItems: "center",
         padding: "6px var(--margin)",
         background: "var(--paper-2)",
+        color: "var(--ink-2)",
         fontSize: "var(--fs-small)",
         textAlign: "center",
       }}
     >
-      Versandkostenfrei ab {formatPrice(store.freeShippingThreshold).replace(",00", "")} · {store.dispatchNote}
+      Versandkostenfrei ab {formatPrice(store.freeShippingThreshold).replace(",00", "")}
     </p>
   );
 }

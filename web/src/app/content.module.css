@@ -1,6 +1,5 @@
 .hero {
   padding-block: clamp(48px, 2rem + 5vw, 120px) var(--s-8);
-  border-bottom: 1px solid var(--line);
 }
 
 .hero h1 {
@@ -89,4 +88,12 @@
   .split {
     grid-template-columns: 1fr;
   }
+}
+
+.notFoundList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-6);
+  font-size: var(--fs-body-l);
 }

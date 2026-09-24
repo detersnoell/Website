@@ -9,7 +9,6 @@ import { AddToCartButton } from "@/components/AddToCartButton";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
 import { Accordion } from "@/components/Accordion";
 import { ProductCard } from "@/components/ProductCard";
-import { Icon } from "@/components/Icon";
 import styles from "./page.module.css";
 
 export function generateStaticParams() {
@@ -57,7 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   };
 
   return (
-    <div style={{ "--accent": p.accent } as React.CSSProperties}>
+    <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className={`container ${styles.top}`}>
@@ -66,29 +65,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <aside className={styles.buy} aria-label="Kaufen">
-          <nav className={`small muted ${styles.crumbs}`} aria-label="Brotkrumen">
-            <Link href="/">Start</Link> / <Link href="/#produkte">Produkte</Link> / <span aria-current="page">{p.name}</span>
-          </nav>
-          <p className={`label ${styles.kind}`}>{p.kind}</p>
           <h1 className="display-l">{p.name}</h1>
-          <p className="body-l">{p.forWhom}</p>
+          <p className={`body-l ${styles.for}`}>{p.forWhom}</p>
 
           <div className={styles.priceBlock}>
             <p className={styles.price}>
               <span className="num">{formatPrice(v.priceGross)}</span>
-              <span className="small muted num">
-                {v.size.value} {v.size.unit} · {unitPricePerLitre(v.priceGross, v.size.value)}
+              <span className={`num ${styles.unit}`}>
+                {v.size.value} {v.size.unit}, {unitPricePerLitre(v.priceGross, v.size.value)}
               </span>
             </p>
             <p className="small muted">
               Inkl. MwSt., zzgl.{" "}
               <Link href="/hilfe#versand" className="link">
                 Versand
-              </Link>{" "}
-              · ab {formatPrice(store.freeShippingThreshold)} versandkostenfrei
+              </Link>
+              . Ab {formatPrice(store.freeShippingThreshold)} versandkostenfrei.
             </p>
-            <p className={`small ${styles.stock}`}>
-              <span className={styles.dot} data-in={v.inStock} /> {v.inStock ? "Auf Lager" : "Derzeit nicht verfügbar"} · {store.dispatchNote}
+            <p className={`small ${styles.stock}`} data-in={v.inStock}>
+              {v.inStock ? "Auf Lager." : "Derzeit nicht verfügbar."} {store.dispatchNote}.
             </p>
           </div>
 
@@ -98,21 +93,17 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
           <ul className={styles.highlights}>
             {p.highlights.map((h) => (
-              <li key={h}>
-                <Icon name="check" size={18} />
-                {h}
-              </li>
+              <li key={h}>{h}</li>
             ))}
             <li>
-              <Icon name="check" size={18} />
               {store.certification.short}
-              {p.vegan ? " · vegan" : ""}
+              {p.vegan ? ", vegan" : ""}
             </li>
           </ul>
 
           {companion && (
             <div className={styles.companion}>
-              <p className="label muted">Passt dazu</p>
+              <p className={styles.companionLabel}>Passt dazu</p>
               <Link href={`/${companion.slug}`} className={styles.companionLink}>
                 <span className={styles.companionName}>{companion.name}</span>
                 <span className="small muted">{companion.forWhom}</span>
@@ -126,13 +117,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* A · Für wen – und für wen nicht */}
       <section className={`section ${styles.module}`} aria-labelledby="fuer-wen">
         <div className={`container ${styles.split}`}>
-          <h2 id="fuer-wen" className="display-m reveal">
+          <h2 id="fuer-wen" className="display-m">
             Für wen {p.name} gemacht ist
           </h2>
-          <div className={`${styles.prose} reveal`}>
+          <div className={styles.prose}>
             <p className="body-l">{p.lead}</p>
             <p className={styles.notFor}>
-              <strong>Nicht ideal, wenn …</strong> {p.notFor.text}{" "}
+              <strong>Nicht ideal, wenn:</strong> {p.notFor.text}{" "}
               {alt && (
                 <Link href={`/${alt.slug}`} className="link">
                   Zu {alt.name}
@@ -146,25 +137,24 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* B · Wirkstoffe */}
       <section className={`section ${styles.module} ${styles.tinted}`} aria-labelledby="wirkstoffe">
         <div className="container">
-          <h2 id="wirkstoffe" className={`display-m reveal ${styles.moduleTitle}`}>
+          <h2 id="wirkstoffe" className={`display-m ${styles.moduleTitle}`}>
             Was es besonders macht
           </h2>
-          <ol className={styles.keys}>
-            {p.keyIngredients.map((k, i) => (
-              <li key={k.name} className="reveal">
-                <span className="small muted num">0{i + 1}</span>
+          <ul className={styles.keys}>
+            {p.keyIngredients.map((k) => (
+              <li key={k.name}>
                 <p className={styles.keyName}>{k.name}</p>
                 <p className="muted">{k.benefit}.</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
       {/* C · Anwendung */}
       <section className={`section ${styles.module}`} aria-labelledby="anwendung">
         <div className={`container ${styles.split}`}>
-          <div className="reveal">
+          <div>
             <h2 id="anwendung" className="display-m">
               Anwendung
             </h2>
@@ -185,7 +175,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               </div>
             </dl>
           </div>
-          <ol className={`${styles.steps} reveal`}>
+          <ol className={styles.steps}>
             {p.usage.map((u, i) => (
               <li key={i}>
                 <span className={styles.stepNum}>{i + 1}</span>
@@ -199,7 +189,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* D · Alle Inhaltsstoffe + E · Zertifikat */}
       <section id="inhaltsstoffe" className={`section ${styles.module}`} aria-labelledby="inci">
         <div className={`container ${styles.split}`}>
-          <div className="reveal">
+          <div>
             <h2 id="inci" className="display-m">
               Alle Inhaltsstoffe
             </h2>
@@ -207,11 +197,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               Vollständig und in der Reihenfolge der Menge. * aus kontrolliert biologischem Anbau.
             </p>
             <p className={`small ${styles.certNote}`}>
-              <strong>{store.certification.short}</strong> · {store.certification.long}, kontrolliert durch die {store.certification.controlledBy}. Hergestellt in einer
+              <strong>{store.certification.short}:</strong> {store.certification.long}, kontrolliert durch die {store.certification.controlledBy}. Hergestellt in einer
               Naturkosmetik-Manufaktur im Allgäu, Verpackung FSC-zertifiziert.
             </p>
           </div>
-          <table className={`${styles.inci} reveal`}>
+          <table className={styles.inci}>
             <thead>
               <tr>
                 <th scope="col">INCI</th>
@@ -236,7 +226,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* G · Fragen */}
       <section className={`section ${styles.module}`} aria-labelledby="fragen">
         <div className={`container ${styles.split}`}>
-          <h2 id="fragen" className="display-m reveal">
+          <h2 id="fragen" className="display-m">
             Fragen zu {p.name}
           </h2>
           <Accordion items={p.faq.map((f) => ({ title: f.q, content: f.a }))} />
@@ -246,16 +236,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* H · Passt dazu / Duo */}
       <section className={`section ${styles.module} ${styles.tinted}`} aria-labelledby="dazu">
         <div className="container">
-          <h2 id="dazu" className={`display-m reveal ${styles.moduleTitle}`}>
+          <h2 id="dazu" className={`display-m ${styles.moduleTitle}`}>
             Passt dazu
           </h2>
           <div className={styles.related}>
-            {others.map((o, i) => (
-              <ProductCard key={o.slug} product={o} index={i} />
+            {others.map((o) => (
+              <ProductCard key={o.slug} product={o} />
             ))}
             {duo && (
-              <div className={`${styles.duo} reveal`}>
-                <p className="label muted">Set</p>
+              <div className={styles.duo}>
                 <p className="display-m">{duo.name}</p>
                 <p className="muted">{duo.description}</p>
                 <p className={styles.price}>

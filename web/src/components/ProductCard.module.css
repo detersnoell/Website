@@ -1,107 +1,31 @@
 .card {
   position: relative;
   display: grid;
-  gap: var(--s-4);
+  gap: var(--s-5);
   align-content: start;
-}
-
-/* Einmaliger Einstieg im Hero: gestaffelt 60 ms, 600 ms */
-.enter {
-  animation: enter var(--dur-xl) var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 60ms);
-}
-
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
 }
 
 .media {
   position: relative;
+  display: block;
   aspect-ratio: var(--card-ratio, 4 / 5);
   background: var(--studio);
   overflow: hidden;
 }
 
-.imageLink {
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
-}
-
 .img {
   object-fit: cover;
-  transform: scale(1);
-  transition: transform 900ms var(--ease-out);
 }
 
+/* Zweites Bild (Detail/Textur) liegt darüber, unsichtbar bis Hover */
 .img2 {
   opacity: 0;
-  transition:
-    opacity var(--dur-m) var(--ease-out),
-    transform 900ms var(--ease-out);
-}
-
-/* „+“ – immer sichtbar (Touch, Tastatur); auf Desktop wächst es zur Pille */
-.add {
-  position: absolute;
-  right: var(--s-4);
-  bottom: var(--s-4);
-  display: inline-flex;
-  align-items: center;
-  height: 44px;
-  max-width: 44px;
-  border-radius: 22px;
-  background: var(--paper);
-  color: var(--ink);
-  overflow: hidden;
-  white-space: nowrap;
-  box-shadow: 0 1px 0 rgba(28, 27, 25, 0.06);
-  transition:
-    max-width 240ms var(--ease-out),
-    background-color var(--dur-s) var(--ease-out),
-    color var(--dur-s) var(--ease-out);
-}
-
-.addIcon {
-  flex: 0 0 44px;
-  display: grid;
-  place-items: center;
-}
-
-.addText {
-  padding-right: var(--s-4);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity var(--dur-s) var(--ease-out);
-}
-
-.add[data-state="loading"] .addIcon {
-  animation: breathe 700ms var(--ease-in-out) infinite alternate;
-}
-
-.add[data-state="done"] {
-  background: var(--ink);
-  color: var(--on-ink);
-}
-
-@keyframes breathe {
-  to {
-    opacity: 0.35;
-  }
+  transition: opacity var(--dur-m) var(--ease-out);
 }
 
 .body {
   display: grid;
-  gap: 2px;
-}
-
-.kind {
-  color: var(--accent);
-  margin-bottom: var(--s-1);
+  gap: var(--s-1);
 }
 
 .name {
@@ -111,66 +35,67 @@
   line-height: 1.2;
 }
 
-.nameLink {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size 240ms var(--ease-out);
-}
-
 /* Ganze Karte klickbar, ohne verschachtelte Links */
 .nameLink::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
-}
-
-.add {
-  z-index: 1;
 }
 
 .for {
-  max-width: 34ch;
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+  max-width: 36ch;
+}
+
+.buy {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: var(--s-3);
 }
 
 .price {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 2px var(--s-3);
-  margin-top: var(--s-2);
+  gap: 0 var(--s-3);
   font-weight: 500;
 }
 
-/* Hover nur für echte Zeigegeräte; 80 ms Absichtsverzögerung */
+.unit {
+  font-size: var(--fs-small);
+  font-weight: 400;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.add {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  min-height: 44px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  transition: text-decoration-color var(--dur-s) var(--ease-out);
+}
+
+.add[data-state="done"] {
+  text-decoration-color: transparent;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .card:hover .img,
-  .card:focus-within .img {
-    transform: scale(1.02);
-    transition-delay: 80ms;
-  }
   .card:hover .img2,
   .card:focus-within .img2 {
     opacity: 1;
     transition-delay: 80ms;
   }
-  .card:hover .nameLink {
-    background-size: 100% 1px;
-  }
-  .card:hover .add,
-  .add:focus-visible {
-    max-width: 280px;
-    transition-delay: 80ms;
-  }
-  .card:hover .addText,
-  .add:focus-visible .addText {
-    opacity: 1;
-    transition-delay: 160ms;
-  }
   .add:hover {
-    background: var(--ink);
-    color: var(--on-ink);
+    text-decoration-color: currentColor;
   }
 }

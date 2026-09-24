@@ -21,7 +21,6 @@ export default function Hilfe() {
   return (
     <>
       <header className={`container ${s.hero}`}>
-        <p className="label muted">Hilfe</p>
         <h1 className="display-xl">Wie können wir helfen?</h1>
       </header>
 

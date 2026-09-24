@@ -35,7 +35,11 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
       ui-ux-pro-max, design-taste-frontend, redesign-audit). Stitch und Nano Banana
       auf Wunsch des Nutzers entfernt (keine externen APIs)
 - [~] **Übergangsbilder**: Hasenfüßin eingebaut; Shampoo-Bilder kamen nicht als Datei an
-- [ ] Anti-KI-Optik-Durchgang (frontend-design-Checkliste) – vorgeschlagen
+- [x] Anti-KI-Optik-Durchgang: keine Rundungen, keine Versal-Labels, keine „A · B · C“-
+      Zeilen, keine Pfeile, keine Scheinnummerierung, keine Einblend-Animationen,
+      hellerer Papierton, heller Footer, Zeilen statt Dreier-Karten, 404-Seite
+- [ ] Hochauflösendes Wappen, Vizsla-Foto, Gründerinnen-Foto, altes Hero-Motiv:
+      kamen nur als Anzeige, nicht als Datei – Nutzer schickt erneut
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
 ## Technischer Hinweis (Cloud-Umgebung)
