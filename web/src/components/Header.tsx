@@ -90,7 +90,7 @@ export function Header() {
                   {allProducts.map((p) => (
                     <Link key={p.slug} href={`/${p.slug}`} className={styles.panelCard}>
                       <span className={styles.panelImage}>
-                        <Image src={p.images[0].src} alt="" fill sizes="96px" />
+                        <Image src={p.images[0].src} alt="" fill sizes="96px" style={{ objectPosition: p.images[0].focus }} />
                       </span>
                       <span>
                         <span className={styles.panelName}>{p.name}</span>
@@ -137,7 +137,7 @@ export function Header() {
               <li key={p.slug}>
                 <Link href={`/${p.slug}`} className={styles.sheetProduct}>
                   <span className={styles.sheetImage}>
-                    <Image src={p.images[0].src} alt="" fill sizes="72px" />
+                    <Image src={p.images[0].src} alt="" fill sizes="72px" style={{ objectPosition: p.images[0].focus }} />
                   </span>
                   <span>
                     <span className={styles.sheetName}>{p.name}</span>

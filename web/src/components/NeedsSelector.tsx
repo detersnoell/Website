@@ -57,7 +57,7 @@ export function NeedsSelector() {
 
       <div id="need-panel" role="tabpanel" aria-labelledby={`need-tab-${p.slug}`} className={styles.panel}>
         <div className={styles.media} key={`m-${p.slug}`}>
-          <Image src={image.src} alt={image.alt} fill sizes="(max-width: 899px) 100vw, 40vw" />
+          <Image src={image.src} alt={image.alt} fill sizes="(max-width: 899px) 100vw, 40vw" style={{ objectPosition: image.focus }} />
         </div>
         <div className={styles.content} key={`c-${p.slug}`}>
           <p className={`label ${styles.kind}`}>{p.kind}</p>

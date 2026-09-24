@@ -128,7 +128,7 @@ export function CartDrawer() {
                 <p className="label muted">Passt dazu</p>
                 <div className={styles.recoRow}>
                   <span className={styles.recoImage}>
-                    <Image src={balm.images[0].src} alt="" fill sizes="56px" />
+                    <Image src={balm.images[0].src} alt="" fill sizes="56px" style={{ objectPosition: balm.images[0].focus }} />
                   </span>
                   <span>
                     <span className={styles.lineName}>{balm.name}</span>

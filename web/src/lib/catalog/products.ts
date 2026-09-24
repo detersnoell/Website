@@ -201,10 +201,9 @@ export const products: Record<ProductSlug, Product> = {
     scent: "Mandarine & Fichtennadel, dezent",
     frequency: "Vor oder nach dem Spaziergang",
     images: [
-      { src: "/images/products/hasenfuessin-verpackung.jpg", alt: "Hasenfüßin Pfotenbalsam, 50-ml-Tiegel mit Faltschachtel", role: "packshot", width: 1260, height: 828 },
-      { src: "/images/products/hasenfuessin-offen.jpg", alt: "Geöffneter Tiegel Hasenfüßin mit Balsam", role: "texture", width: 425, height: 303 },
-      { src: "/images/products/hasenfuessin-geschlossen.jpg", alt: "Geschlossener Tiegel Hasenfüßin", role: "packaging", width: 409, height: 303 },
-      { src: "/images/products/hasenfuessin-etikett.jpg", alt: "Etikett der Hasenfüßin im Detail", role: "label", width: 408, height: 303 },
+      { src: "/images/products/hasenfuessin-packshot.jpg", alt: "Hasenfüßin Pfotenbalsam: geöffneter 50-ml-Tiegel neben der Faltschachtel", role: "packshot", width: 1312, height: 841, focus: "74% 55%" },
+      { src: "/images/products/hasenfuessin-textur.jpg", alt: "Geöffneter Tiegel mit cremigem Balsam", role: "texture", width: 921, height: 894 },
+      { src: "/images/products/hasenfuessin-aufsicht.jpg", alt: "Blick von oben in den geöffneten Tiegel", role: "texture", width: 436, height: 347 },
     ],
     variants: [
       { sku: "MB-HF-50", size: { value: 50, unit: "ml" }, priceGross: 1995, commerceIds: { woocommerce: 574 }, inStock: true },

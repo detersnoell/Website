@@ -30,7 +30,7 @@ export function Gallery({ images, name }: { images: ProductImage[]; name: string
       <div className={styles.stack} data-count={images.length}>
         {images.map((img, i) => (
           <button key={img.src} type="button" className={styles.tile} onClick={() => setViewer(i)} aria-label={`Bild ${i + 1} von ${images.length} vergrößern`}>
-            <Image src={img.src} alt={img.alt} fill sizes={i === 0 ? "(max-width: 1199px) 55vw, 760px" : "(max-width: 1199px) 28vw, 380px"} priority={i === 0} />
+            <Image src={img.src} alt={img.alt} fill sizes={i === 0 ? "(max-width: 1199px) 55vw, 760px" : "(max-width: 1199px) 28vw, 380px"} priority={i === 0} style={{ objectPosition: img.focus }} />
           </button>
         ))}
       </div>
@@ -40,7 +40,7 @@ export function Gallery({ images, name }: { images: ProductImage[]; name: string
         <div ref={track} className={styles.track} onScroll={onScroll}>
           {images.map((img, i) => (
             <button key={img.src} type="button" className={styles.slide} onClick={() => setViewer(i)} aria-label={`Bild ${i + 1} von ${images.length} vergrößern`}>
-              <Image src={img.src} alt={img.alt} fill sizes="100vw" priority={i === 0} />
+              <Image src={img.src} alt={img.alt} fill sizes="100vw" priority={i === 0} style={{ objectPosition: img.focus }} />
             </button>
           ))}
         </div>

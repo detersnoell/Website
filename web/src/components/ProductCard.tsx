@@ -59,9 +59,17 @@ export function ProductCard({
             sizes="(max-width: 767px) 80vw, (max-width: 1199px) 45vw, 30vw"
             priority={priority}
             className={styles.img}
+            style={{ objectPosition: first.focus }}
           />
           {second && (
-            <Image src={second.src} alt="" fill sizes="(max-width: 767px) 80vw, 30vw" className={`${styles.img} ${styles.img2}`} />
+            <Image
+              src={second.src}
+              alt=""
+              fill
+              sizes="(max-width: 767px) 80vw, 30vw"
+              className={`${styles.img} ${styles.img2}`}
+              style={{ objectPosition: second.focus }}
+            />
           )}
         </Link>
         <button

@@ -176,7 +176,7 @@ export default function Home() {
                   <div className={styles.setImages}>
                     {b.items.map((it) => (
                       <span key={it.slug} className={styles.setImage}>
-                        <Image src={products[it.slug].images[0].src} alt="" fill sizes="(max-width: 899px) 30vw, 12vw" />
+                        <Image src={products[it.slug].images[0].src} alt="" fill sizes="(max-width: 899px) 30vw, 12vw" style={{ objectPosition: products[it.slug].images[0].focus }} />
                       </span>
                     ))}
                   </div>

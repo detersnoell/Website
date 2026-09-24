@@ -22,6 +22,8 @@ export interface ProductImage {
   role: ImageRole;
   width: number;
   height: number;
+  /** Bildausschnitt bei Beschnitt (CSS object-position), z. B. "74% 55%" */
+  focus?: string;
 }
 
 export interface Ingredient {

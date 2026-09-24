@@ -21,15 +21,21 @@ Gesetzt ist nur:
 RESEARCH → DISCUSSION → CONCEPT → DESIGN → IMPLEMENTATION → TESTING → ITERATION.
 Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
 
-## Aktueller Stand: Konzept-Phase (wartet auf Entscheidungen)
+## Aktueller Stand: Implementierung v1
 
 - [x] **A — Bestandsaufnahme maybrooks.de:** `research/A-bestandsaufnahme-maybrooks.md`
 - [x] **B/C — Referenzen & Wettbewerb** (Cloud7 als Nutzer-Referenz + Dr Lisa,
       4-Legger, Fable, Wild One, maxbone, Pets Deli): `research/B-C-referenzen-und-wettbewerb.md`
 - [x] **Konzept-Blaupause v1:** `concept/blaupause-v1.md` +
       `concept/07-technik-und-integrationen.md`
-- [ ] **Offene Entscheidungen** (Kap. 10 der Blaupause) mit dem Nutzer klären
-- [ ] Danach: Prototyp / Implementierung
+- [x] **Entscheidungen** getroffen (Kap. 10 der Blaupause)
+- [x] **Frontend v1** (`web/`): Startseite, Produktseiten, Drawer, Kasse (ohne Zahlung),
+      Manufaktur, Hilfe, Rechts-Platzhalter; Commerce-Adapter lokal + WooCommerce
+- [x] **Design-Tools**: Skills in `.claude/skills/`, Stitch-MCP (`.mcp.json`),
+      Nano-Banana-Skript (`tools/`) – API-Keys vom Nutzer ausstehend
+- [~] **Übergangsbilder**: Hasenfüßin eingebaut; Shampoo-Bilder kamen nicht als Datei an
+- [ ] Anti-KI-Optik-Durchgang (frontend-design-Checkliste) – vorgeschlagen
+- [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
 ## Technischer Hinweis (Cloud-Umgebung)
 
