@@ -24,7 +24,7 @@ export const products: Record<ProductSlug, Product> = {
     need: "Empfindliche Haut",
     lead: "Reinigt Fell und Haut besonders sanft und beruhigt gereizte Hautstellen. Mit Lavendelöl, Arnika und Ringelblume, seifen- und schaumfrei.",
     notFor: {
-      text: "Hat dein Hund robustes Fell und geht es vor allem um Glanz und Kämmbarkeit, passt Raufbold besser.",
+      text: "dein Hund robustes Fell hat und es vor allem um Glanz und Kämmbarkeit geht. Dafür ist Raufbold gemacht.",
       alternative: "raufbold",
     },
     highlights: [
@@ -91,7 +91,7 @@ export const products: Record<ProductSlug, Product> = {
     need: "Robustes Fell",
     lead: "Macht das Fell geschmeidig, glänzend und leicht kämmbar. Mit Bio-Arganöl aus Marokko, seifen- und schaumfrei.",
     notFor: {
-      text: "Neigt die Haut deines Hundes zu Reizungen oder Allergien, empfehlen wir den Warmduscher.",
+      text: "die Haut deines Hundes zu Reizungen oder Allergien neigt. Dann ist der Warmduscher die bessere Wahl.",
       alternative: "warmduscher",
     },
     highlights: [
@@ -155,7 +155,7 @@ export const products: Record<ProductSlug, Product> = {
     need: "Pfoten & Nase",
     lead: "Pflegt beanspruchte, rissige Pfotenballen und trockene Nasen. Zieht gut ein und schützt im Sommer wie im Winter.",
     notFor: {
-      text: "Kein Ersatz für eine tierärztliche Behandlung: Bei offenen Wunden oder Entzündungen bitte zuerst zum Tierarzt.",
+      text: "dein Hund offene Wunden oder entzündete Stellen hat. Dann bitte zuerst zum Tierarzt, die Hasenfüßin ersetzt keine Behandlung.",
     },
     highlights: [
       "Pflegt rissige und beanspruchte Pfoten",

@@ -260,6 +260,13 @@ button {
   transition: text-decoration-color var(--dur-s) var(--ease-out);
 }
 
+/* Eigenständige Links (nicht im Fließtext) bekommen eine Trefferfläche von 44 px */
+:is(div, header, th, li, nav, section) > a.link {
+  display: inline-block;
+  padding-block: 10px;
+  margin-block: -10px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
     text-decoration-color: currentColor;

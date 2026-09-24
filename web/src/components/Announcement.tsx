@@ -3,7 +3,8 @@ import { store } from "@/lib/store";
 
 export function Announcement() {
   return (
-    <p
+    <aside
+      aria-label="Hinweis"
       style={{
         minHeight: "var(--announce-h)",
         display: "grid",
@@ -16,6 +17,6 @@ export function Announcement() {
       }}
     >
       Versandkostenfrei ab {formatPrice(store.freeShippingThreshold).replace(",00", "")}
-    </p>
+    </aside>
   );
 }

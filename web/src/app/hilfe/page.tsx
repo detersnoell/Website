@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { Accordion } from "@/components/Accordion";
+import { ContactForm } from "@/components/ContactForm";
 import { formatPrice } from "@/lib/money";
 import { store } from "@/lib/store";
 import s from "../content.module.css";
@@ -90,10 +91,8 @@ export default function Hilfe() {
                 {store.contact.email}
               </a>
             </p>
-            <h3>Für Händler</h3>
-            <p className="muted">
-              Du möchtest Maybrooks in deinem Geschäft anbieten oder im Salon verwenden? Schreib uns mit dem Betreff „Händleranfrage“.
-            </p>
+            <p className="muted">Händler und Hundefriseure erreichen uns über dasselbe Formular, Thema „Händleranfrage“.</p>
+            <ContactForm />
           </div>
         </div>
       </section>

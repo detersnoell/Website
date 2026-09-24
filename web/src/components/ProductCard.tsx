@@ -13,7 +13,16 @@ import styles from "./ProductCard.module.css";
  * Desktop: nach 80 ms Hover-Absicht Überblendung auf Bild 2 (Textur/Detail), 320 ms.
  * Touch: kein Hover. „Hinzufügen“ legt direkt in den Warenkorb (Rückmeldung per Toast).
  */
-export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
+export function ProductCard({
+  product,
+  priority = false,
+  headingLevel = "h3",
+}: {
+  product: Product;
+  priority?: boolean;
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
   const { add } = useCart();
   const [state, setState] = useState<"idle" | "loading" | "done">("idle");
   const variant = product.variants[0];
@@ -41,6 +50,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
           fill
           sizes="(max-width: 767px) 72vw, (max-width: 1199px) 45vw, 30vw"
           priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           className={styles.img}
           style={{ objectPosition: first.focus }}
         />
@@ -57,11 +67,11 @@ export function ProductCard({ product, priority = false }: { product: Product; p
       </Link>
 
       <div className={styles.body}>
-        <h3 className={styles.name}>
+        <Heading className={styles.name}>
           <Link href={`/${product.slug}`} className={styles.nameLink}>
             {product.name}
           </Link>
-        </h3>
+        </Heading>
         <p className={styles.for}>{product.forWhom}</p>
         <div className={styles.buy}>
           <p className={styles.price}>
@@ -75,7 +85,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
             className={styles.add}
             onClick={quickAdd}
             data-state={state}
-            aria-label={`${product.name} für ${formatPrice(variant.priceGross)} in den Warenkorb legen`}
+            aria-label={`Hinzufügen: ${product.name}, ${formatPrice(variant.priceGross)}`}
           >
             {state === "done" ? "Im Warenkorb" : state === "loading" ? "Wird hinzugefügt" : "Hinzufügen"}
           </button>

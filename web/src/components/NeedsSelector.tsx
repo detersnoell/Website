@@ -61,7 +61,7 @@ export function NeedsSelector() {
             ))}
           </ul>
           <p className={styles.notFor}>
-            <span>Nicht ideal, wenn:</span> {p.notFor.text}
+            <span>Nicht ideal, wenn</span> {p.notFor.text}
           </p>
           <div className={styles.actions}>
             <AddToCartButton

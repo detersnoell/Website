@@ -41,6 +41,11 @@ Nicht vorspringen; strategische Entscheidungen werden mit dem Nutzer getroffen.
 - [x] Gründerinnen-Foto im Kontaktbereich (`/hilfe#kontakt`), wer hinter der Marke steht
 - [ ] Hochauflösendes Wappen, altes Hero-Motiv (Annotationen, im Code nachbauen):
       kamen nur als Anzeige, nicht als Datei. Vizsla-Foto optional
+- [x] Implementierung v1: Checkout-Logik mit Validierung und Bestellentwurf, Kontaktformular
+      (+ API mit E-Mail-Adapter), Produktvergleich, Analytics-Ereignisse (GA4-Schema, ohne
+      Versand), Sitemap/robots, Tastatur-/Fokus-Handling
+- [x] Test & Audit: `concept/audit-v1.md`
+- [ ] Nächste Iteration: siehe Audit (Vorschlag an Nutzer)
 - [ ] Versand-/Rückgabefakten, Kontaktdaten, Rechtstexte vom Betreiber
 
 ## Technischer Hinweis (Cloud-Umgebung)

@@ -7,6 +7,8 @@ import { store } from "@/lib/store";
 import { Gallery } from "@/components/Gallery";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
+import { TrackView } from "@/components/TrackView";
+import { Comparison } from "@/components/Comparison";
 import { Accordion } from "@/components/Accordion";
 import { ProductCard } from "@/components/ProductCard";
 import styles from "./page.module.css";
@@ -58,6 +60,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <TrackView
+        event="view_item"
+        payload={{ value: v.priceGross / 100, items: [{ item_id: v.sku, item_name: p.name, price: v.priceGross / 100, quantity: 1 }] }}
+      />
 
       <div className={`container ${styles.top}`}>
         <div className={styles.gallery}>
@@ -123,7 +129,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className={styles.prose}>
             <p className="body-l">{p.lead}</p>
             <p className={styles.notFor}>
-              <strong>Nicht ideal, wenn:</strong> {p.notFor.text}{" "}
+              <strong>Nicht ideal, wenn</strong> {p.notFor.text}{" "}
               {alt && (
                 <Link href={`/${alt.slug}`} className="link">
                   Zu {alt.name}
@@ -204,7 +210,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <table className={styles.inci}>
             <thead>
               <tr>
-                <th scope="col">INCI</th>
+                <th scope="col">Bezeichnung (INCI)</th>
                 <th scope="col">Was es ist</th>
               </tr>
             </thead>
@@ -220,6 +226,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      {/* Vergleich */}
+      <section className={`section ${styles.module}`} aria-labelledby="vergleich">
+        <div className="container">
+          <h2 id="vergleich" className={`display-m ${styles.moduleTitle}`}>
+            Im Vergleich
+          </h2>
+          <Comparison current={p.slug} />
         </div>
       </section>
 

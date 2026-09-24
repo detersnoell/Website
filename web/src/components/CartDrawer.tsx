@@ -136,7 +136,7 @@ export function CartDrawer() {
                     type="button"
                     className={styles.recoAdd}
                     onClick={() => add([{ sku: balm.variants[0].sku, qty: 1 }], "drawer")}
-                    aria-label={`${balm.name} für ${formatPrice(balm.variants[0].priceGross)} hinzufügen`}
+                    aria-label={`Hinzufügen: ${balm.name}, ${formatPrice(balm.variants[0].priceGross)}`}
                   >
                     Hinzufügen, <span className="num">{formatPrice(balm.variants[0].priceGross)}</span>
                   </button>

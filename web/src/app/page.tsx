@@ -56,7 +56,7 @@ export default function Home() {
           </h1>
           <div className={styles.shelf}>
             {allProducts.map((p, i) => (
-              <ProductCard key={p.slug} product={p} priority={i === 0} />
+              <ProductCard key={p.slug} product={p} priority={i === 0} headingLevel="h2" />
             ))}
           </div>
         </div>

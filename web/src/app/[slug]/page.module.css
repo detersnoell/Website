@@ -213,9 +213,7 @@
 .inci th {
   text-align: left;
   font-weight: 500;
-  font-size: var(--fs-label);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: var(--fs-small);
   color: var(--ink-2);
   padding-bottom: var(--s-3);
   border-bottom: 1px solid var(--line-strong);

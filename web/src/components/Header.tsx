@@ -16,6 +16,10 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
   const panelTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const headerRef = useRef<HTMLElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const panelButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
   // Beim Herunterscrollen ausblenden, beim Hochscrollen zeigen
@@ -38,13 +42,40 @@ export function Header() {
     setPanelOpen(false);
   }, [pathname]);
 
+  // Mobiles Menü: Scroll sperren, Fokus hinein und beim Schließen zurück zum Button
   useEffect(() => {
     document.documentElement.style.overflow = menuOpen ? "hidden" : "";
     if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    sheetRef.current?.querySelector<HTMLElement>("a")?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
+
+  // Produkte-Panel: Escape und Klick außerhalb schließen
+  useEffect(() => {
+    if (!panelOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setPanelOpen(false);
+        panelButtonRef.current?.focus();
+      }
+    };
+    const onDown = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setPanelOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onDown);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onDown);
+    };
+  }, [panelOpen]);
 
   const openPanel = () => {
     clearTimeout(panelTimer.current);
@@ -57,9 +88,10 @@ export function Header() {
 
   return (
     <>
-      <header className={styles.header} data-hidden={hidden && !menuOpen && !panelOpen}>
+      <header ref={headerRef} className={styles.header} data-hidden={hidden && !menuOpen && !panelOpen}>
         <div className={`container ${styles.bar}`}>
           <button
+            ref={menuButtonRef}
             type="button"
             className={styles.menuButton}
             aria-expanded={menuOpen}
@@ -77,6 +109,7 @@ export function Header() {
           <nav className={styles.nav} aria-label="Hauptnavigation">
             <div className={styles.navItem} onMouseEnter={openPanel} onMouseLeave={closePanel}>
               <button
+                ref={panelButtonRef}
                 type="button"
                 className={styles.navLink}
                 aria-expanded={panelOpen}
@@ -131,7 +164,7 @@ export function Header() {
         </div>
       </header>
 
-      <div id="mobile-menu" className={styles.sheet} data-open={menuOpen} aria-hidden={!menuOpen} inert={!menuOpen}>
+      <div ref={sheetRef} id="mobile-menu" className={styles.sheet} data-open={menuOpen} aria-hidden={!menuOpen} inert={!menuOpen}>
         <nav aria-label="Menü">
           <ul className={styles.sheetProducts}>
             {allProducts.map((p) => (
