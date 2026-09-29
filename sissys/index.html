@@ -355,7 +355,7 @@
 <!-- Ansicht 1: die Frage -->
 <main class="view" id="frage">
   <p class="eyebrow">Eine Einladung, ganz in Pink</p>
-  <h1>Willst du mit mir zu <span class="script">Sissys</span> gehen?</h1>
+  <h1>Gehen wir Donnerstag zu <span class="script">Sissys</span>?</h1>
 
   <div class="frame">
     <!-- Bild: Datei "bild.jpg" neben diese Seite legen -->
@@ -369,8 +369,8 @@
   </div>
 
   <div class="choices">
-    <button type="button" class="btn btn-yes" id="ja">Ja, schon immer</button>
-    <button type="button" class="btn btn-no" id="nein">Nein danke</button>
+    <button type="button" class="btn btn-yes" id="ja">Ja, gerne</button>
+    <button type="button" class="btn btn-no" id="nein">Ich möchte dich nie mehr sehen</button>
   </div>
 </main>
 
@@ -479,7 +479,7 @@
     try { history.pushState({ ansicht: "anmeldung" }, "", "#anmeldung"); } catch (e) {}
     document.getElementById("t1800").focus({ preventScroll: true });
   });
-  // "Nein danke": absichtlich passiert nichts
+  // "Ich möchte dich nie mehr sehen": absichtlich passiert nichts
   document.getElementById("nein").addEventListener("click", function () {});
 
   document.getElementById("zurueck").addEventListener("click", function () {
