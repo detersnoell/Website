@@ -109,11 +109,12 @@
   /* Bildrahmen wie eine Puppenschachtel */
   .frame {
     position: relative;
-    width: min(320px, 78vw);
-    aspect-ratio: 4 / 5;
+    flex: none;
+    width: max(220px, min(330px, 78vw, calc((100svh - 340px) * 0.667)));
+    aspect-ratio: 2 / 3;
     max-width: 100%;
-    border-radius: 28px;
-    border: 10px solid var(--white);
+    border-radius: 22px;
+    border: 8px solid var(--white);
     background: var(--pink-pale);
     overflow: hidden;
     transform: rotate(-2deg);
@@ -358,7 +359,7 @@
 
   <div class="frame">
     <!-- Bild: Datei "bild.jpg" neben diese Seite legen -->
-    <img id="bild" src="bild.jpg" alt="" hidden>
+    <img id="bild" src="bild.jpg" alt="Einladungsbild im Stil einer Barbie-Puppenschachtel mit dem Namen Leyni" width="800" height="1200" hidden>
     <div class="placeholder" id="platzhalter">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
         <path d="M12 21s-7.5-4.6-10-9.2C.3 8.1 2.3 4.5 6 4c2-.3 3.7.7 6 3 2.3-2.3 4-3.3 6-3 3.7.5 5.7 4.1 4 7.8C19.5 16.4 12 21 12 21z"/>
