@@ -428,7 +428,7 @@
         </div>
 
         <div class="notice" id="hinweis" hidden>
-          <p>Das Senden hat gerade nicht geklappt. Du kannst es gleich nochmal versuchen oder deine Auswahl direkt an <span class="mail">marius.brandherm@web.de</span> schicken:</p>
+          <p id="hinweisText">Das Senden hat gerade nicht geklappt. Du kannst es gleich nochmal versuchen oder deine Auswahl direkt an marius.brandherm@web.de schicken:</p>
           <pre id="zusammenfassung"></pre>
           <button type="button" class="copy" id="kopieren">Auswahl kopieren</button>
         </div>
@@ -536,7 +536,11 @@
     })
       .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, json: j }; }); })
       .then(function (r) {
-        if (!r.ok || String(r.json && r.json.success) !== "true") throw new Error("senden");
+        if (!r.ok || String(r.json && r.json.success) !== "true") {
+          var fehler = new Error("senden");
+          fehler.detail = (r.json && r.json.message) || "";
+          throw fehler;
+        }
         document.getElementById("formularAnsicht").hidden = true;
         document.getElementById("erfolgText").textContent =
           "Ich freue mich auf Donnerstag, " + gewaehlt("Uhrzeit") + ".";
@@ -544,7 +548,17 @@
         erfolg.hidden = false;
         erfolg.focus();
       })
-      .catch(function () {
+      .catch(function (err) {
+        var detail = (err && err.detail) || "";
+        var text = document.getElementById("hinweisText");
+        if (/activat/i.test(detail)) {
+          // Erster Versand: FormSubmit wartet auf die Bestätigung per Mail
+          text.textContent = "Das Formular ist noch nicht freigeschaltet. An " + EMPFAENGER +
+            " wurde eine Mail mit dem Button „Activate Form“ geschickt. Nach dem Klick darauf einfach nochmal absenden.";
+        } else {
+          text.textContent = "Das Senden hat gerade nicht geklappt" + (detail ? " (" + detail + ")" : "") +
+            ". Du kannst es gleich nochmal versuchen oder deine Auswahl direkt an " + EMPFAENGER + " schicken:";
+        }
         document.getElementById("zusammenfassung").textContent = zusammenfassung();
         hinweis.hidden = false;
         absenden.disabled = false;
