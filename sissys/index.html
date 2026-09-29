@@ -383,7 +383,9 @@
         <p>Dann lass uns den Abend planen.</p>
       </div>
 
-      <form id="formular" novalidate>
+      <form id="formular" name="sissys" method="POST" data-netlify="true" netlify-honeypot="_honey" novalidate>
+        <input type="hidden" name="form-name" value="sissys">
+        <input type="hidden" name="Datum" value="Donnerstag, 01. Oktober 2026">
         <fieldset>
           <legend>Wann?</legend>
           <div class="date">
@@ -524,23 +526,44 @@
     absenden.textContent = "Wird gesendet …";
 
     var daten = new FormData(form);
-    daten.append("Datum", DATUM);
-    daten.append("_subject", "Sissys: Zusage für " + DATUM + ", " + gewaehlt("Uhrzeit"));
-    daten.append("_template", "table");
-    daten.append("_captcha", "false");
 
-    fetch("https://formsubmit.co/ajax/" + EMPFAENGER, {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: daten
-    })
-      .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, json: j }; }); })
-      .then(function (r) {
-        if (!r.ok || String(r.json && r.json.success) !== "true") {
-          var fehler = new Error("senden");
-          fehler.detail = (r.json && r.json.message) || "";
-          throw fehler;
-        }
+    // 1. Weg: Netlify Forms (speichert jede Anmeldung im Netlify-Konto und mailt sie weiter)
+    // 2. Weg: FormSubmit, falls die Seite nicht auf Netlify läuft oder Netlify das Formular nicht kennt
+    function sendeNetlify() {
+      if (!/\.netlify\.app$/.test(location.hostname)) return Promise.resolve(false);
+      return fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(daten).toString()
+      }).then(function (res) { return res.ok; }, function () { return false; });
+    }
+
+    function sendeFormSubmit() {
+      var fs = new FormData(form);
+      fs.delete("form-name");
+      fs.append("_subject", "Sissys: Zusage für " + DATUM + ", " + gewaehlt("Uhrzeit"));
+      fs.append("_template", "table");
+      fs.append("_captcha", "false");
+      return fetch("https://formsubmit.co/ajax/" + EMPFAENGER, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: fs
+      })
+        .then(function (res) {
+          return res.json().then(function (j) { return { ok: res.ok, json: j }; }, function () { return { ok: false, json: null }; });
+        })
+        .then(function (r) {
+          if (!r.ok || String(r.json && r.json.success) !== "true") {
+            var fehler = new Error("senden");
+            fehler.detail = (r.json && r.json.message) || "";
+            throw fehler;
+          }
+        });
+    }
+
+    sendeNetlify()
+      .then(function (ok) { return ok ? null : sendeFormSubmit(); })
+      .then(function () {
         document.getElementById("formularAnsicht").hidden = true;
         document.getElementById("erfolgText").textContent =
           "Ich freue mich auf Donnerstag, " + gewaehlt("Uhrzeit") + ".";
